@@ -8,11 +8,6 @@ import io.netty.channel.ChannelHandlerContext;
 
 public class NettyConnection implements Serializable {
 	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1002594062047937256L;
 	private ChannelHandlerContext context;
 
 	public NettyConnection(ChannelHandlerContext context) {

@@ -1,6 +1,6 @@
 package cn.flaty.NettyPush.server.conn;
 
-public interface ConnectionPool {
+public interface NettyConnectionPool {
 	
 	 public <T> boolean set(String key,int exp,T t);
 	
