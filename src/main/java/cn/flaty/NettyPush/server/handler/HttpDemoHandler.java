@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.server.inHandler;
+package cn.flaty.NettyPush.server.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

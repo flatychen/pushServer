@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.server.inHandler;
+package cn.flaty.NettyPush.server.handler;
 
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;

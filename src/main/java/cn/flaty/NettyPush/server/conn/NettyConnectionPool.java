@@ -1,10 +1,12 @@
 package cn.flaty.NettyPush.server.conn;
 
-public interface NettyConnectionPool {
+public interface NettyConnectionPool<K, V> {
 	
-	 public <T> boolean set(String key,int exp,T t);
+	 public  boolean set(K key,V t);
+	 
+	 public  boolean touch(K key);
 	
-	 public  <T> T get(String key);
+	 public   V get(K key);
 	
 
 }

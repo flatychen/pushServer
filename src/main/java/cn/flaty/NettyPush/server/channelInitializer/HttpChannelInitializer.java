@@ -1,6 +1,6 @@
 package cn.flaty.NettyPush.server.channelInitializer;
 
-import cn.flaty.NettyPush.server.inHandler.HttpDemoHandler;
+import cn.flaty.NettyPush.server.handler.HttpDemoHandler;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
