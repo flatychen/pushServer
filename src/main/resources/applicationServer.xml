@@ -11,24 +11,14 @@
 	<bean name="listener" class="cn.flaty.NettyPush.server.DefaultListener">
 		<property name="host" value="${server.host}" />
 		<property name="port" value="${server.port}" />
-		<property name="channelInitializer" ref="socketChannelInitializer"	/>
+		<property name="channelInitializer" ref="socketChannelInitializer" />
 	</bean>
-	
-<!-- 	<bean id="httpChannelInitializer" class="cn.flaty.NettyPush.server.channelInitializer.HttpChannelInitializer">
-	</bean> -->
-	
-	<bean id="socketChannelInitializer" class="cn.flaty.NettyPush.server.channelInitializer.SocketChannelInitializer">
-		<property name="inHandlers">
-			<list>
-				<!--  <bean class="cn.flaty.NettyPush.server.inHandler.MemcachedDemoHandler" >
-					<property name="pool"  ref="memcached" ></property>
-				</bean>  -->
-				<bean class="cn.flaty.NettyPush.server.inHandler.KryoDemoHandler" >
-				</bean> 
-				<!-- <bean class="cn.flaty.NettyPush.server.inHandler.EchoMsgHandler" >
-				</bean>  -->
-			</list>
-		</property>
+
+	<!-- <bean id="httpChannelInitializer" class="cn.flaty.NettyPush.server.channelInitializer.HttpChannelInitializer"> 
+		</bean> -->
+
+	<bean id="socketChannelInitializer"
+		class="cn.flaty.NettyPush.server.channelInitializer.SocketChannelInitializer">
 	</bean>
 
 

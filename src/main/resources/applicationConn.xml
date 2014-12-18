@@ -9,8 +9,7 @@
 
 	
 
-	<bean name="memcached" class="cn.flaty.NettyPush.server.conn.MemcachedConnectionPool">
-		<property name="addresss"  value="10.10.10.10:12000" />
+	<bean name="connPool" class="cn.flaty.NettyPush.server.conn.GuavaConnPool">
 	</bean>
 	
 
