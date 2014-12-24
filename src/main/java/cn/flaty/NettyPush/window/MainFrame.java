@@ -3,6 +3,7 @@ package cn.flaty.NettyPush.window;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,17 +11,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import cn.flaty.NettyPush.services.DefaultMessageHandler;
-import cn.flaty.NettyPush.services.ServiceHandler;
-import javax.swing.JTextArea;
-import java.awt.Font;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import cn.flaty.NettyPush.services.PushService;
 
 public class MainFrame extends JFrame {
 
-	private ServiceHandler hander = new DefaultMessageHandler();
+	
+	
+	@Autowired
+	private PushService pushService;
 
 	private JPanel contentPane;
 
@@ -58,8 +61,9 @@ public class MainFrame extends JFrame {
 		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(textArea.getText().trim());
-				hander.handle(textArea.getText().trim());
+				String _s = textArea.getText().trim();
+				System.out.println(_s);
+				pushService.send(_s);
 				textArea.setText("");
 			}
 		});
@@ -68,9 +72,6 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void setHander(ServiceHandler hander) {
-		this.hander = hander;
-	}
 
 	public static void initFrame() {
 		EventQueue.invokeLater(new Runnable() {

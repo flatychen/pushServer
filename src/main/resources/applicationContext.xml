@@ -9,7 +9,7 @@
 
 	<!-- 强制 cglib 代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<context:component-scan base-package="cn.appsm.*" />
+	<context:component-scan base-package="cn.flaty.*" />
 
 	<context:property-placeholder location="classpath:server.properties" />
 

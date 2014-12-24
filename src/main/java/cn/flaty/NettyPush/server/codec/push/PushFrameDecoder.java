@@ -1,15 +1,15 @@
 package cn.flaty.NettyPush.server.codec.push;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.List;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageCodec;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.util.CharsetUtil;
+
+import java.nio.charset.Charset;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 import cn.flaty.NettyPush.server.frame.PushFrame;
 
 public class PushFrameDecoder extends ByteToMessageDecoder {
@@ -29,9 +29,24 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
-		this.praseHeader(in);
-		Object o = this.praseBody(in);
-		out.add(o);
+		// 解析报文头
+		try {
+			this.praseHeader(in);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ;
+		}
+		// 解析报文
+		String _s = null;
+		try {
+			_s = this.praseBody(in);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ;
+		}
+		if(StringUtils.isNotBlank(_s)){
+			out.add(_s);
+		}
 	}
 
 	/**
@@ -39,7 +54,7 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 	 * @param in
 	 * @return
 	 */
-	private Object praseBody(ByteBuf in) {
+	private String praseBody(ByteBuf in) {
 		int _bytes = in.readableBytes();
 		byte[] b = new byte[_bytes];
 		in.readBytes(b);

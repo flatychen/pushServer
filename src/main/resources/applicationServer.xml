@@ -18,7 +18,7 @@
 		</bean> -->
 
 	<bean id="socketChannelInitializer"
-		class="cn.flaty.NettyPush.server.channelInitializer.SocketChannelInitializer">
+		class="cn.flaty.NettyPush.server.channelInitializer.PushChannelInitializer">
 	</bean>
 
 

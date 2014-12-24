@@ -3,48 +3,55 @@ package cn.flaty.NettyPush.server.conn;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
 
-public class GuavaConnPool implements NettyConnectionPool<String, String> {
+public class GuavaConnPool implements NettyConnectionPool<String, NettyConnection> {
+	
+	private Logger log = LoggerFactory.getLogger(GuavaConnPool.class);
 
 	private long accessTime = 30;
 
-	private LoadingCache<String, String> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(accessTime, TimeUnit.SECONDS).removalListener(new RemovalListener<String, String>() {
+	private LoadingCache<String, NettyConnection> cache = CacheBuilder.newBuilder()
+			.expireAfterAccess(accessTime, TimeUnit.SECONDS).removalListener(new RemovalListener<String, NettyConnection>() {
 				@Override
 				public void onRemoval(
-						RemovalNotification<String, String> notification) {
-					System.out.println(notification.getKey()+"is removing ");
-					
+						RemovalNotification<String, NettyConnection> notification) {
+					log.info(notification.getKey()+"is removed ");
 				}
 			})
-			.build(new CacheLoader<String, String>() {
+			.build(new CacheLoader<String, NettyConnection>(){
 				@Override
-				public String load(String key) throws Exception {
-					System.out.println("cacheloader");
-					return (String) "";
+				public NettyConnection load(String key) throws Exception {
+					log.info("---> loading a not exist key ### ");
+					return null;
 				}
-
+				
 			});
 
 	@Override
-	public boolean set(String key, String t) {
+	public boolean set(String key, NettyConnection t) {
 		cache.put(key, t);
 		return false;
 	}
 
+	@SuppressWarnings("finally")
 	@Override
-	public String get(String key) {
+	public NettyConnection get(String key) {
+		NettyConnection conn = null;
 		try {
-			return cache.get(key);
+			conn = cache.get(key);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
+		}finally{
+			return conn;
 		}
-		return null;
 	}
 
 	@Override

@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.flaty.NettyPush.services.ChannelHandlerContextMgr;
 import cn.flaty.NettyPush.utils.InetSocketUtils;
 
 @Sharable

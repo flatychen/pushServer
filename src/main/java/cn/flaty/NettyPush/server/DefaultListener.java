@@ -30,7 +30,7 @@ public class DefaultListener implements Listener{
 	
 	private  Logger log = LoggerFactory.getLogger(DefaultListener.class);
 	
-	private ChannelInitializer channelInitializer;
+	private ChannelInitializer<Channel> channelInitializer;
 
 	private int port;
 
@@ -39,7 +39,7 @@ public class DefaultListener implements Listener{
 
 	public void start() {
 		// acceptor 线程，用于监听 相当于 bio accept,并分发至worker线程
-		EventLoopGroup acceptor = new NioEventLoopGroup();
+		EventLoopGroup acceptor = new NioEventLoopGroup(1);
 		// work线程，用于处理，取当前服务器 cpu 数量  * 2
 		EventLoopGroup worker = new NioEventLoopGroup(RuntimeUtils.getProcessors() * 2);
 		try {
@@ -70,7 +70,7 @@ public class DefaultListener implements Listener{
 
 	
 	@Required
-	public void setChannelInitializer(ChannelInitializer channelInitializer) {
+	public void setChannelInitializer(ChannelInitializer<Channel> channelInitializer) {
 		this.channelInitializer = channelInitializer;
 	}
 

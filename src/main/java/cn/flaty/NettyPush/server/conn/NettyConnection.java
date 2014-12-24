@@ -1,12 +1,11 @@
 package cn.flaty.NettyPush.server.conn;
 
-import java.io.Serializable;
-
-import cn.flaty.NettyPush.utils.AssertUtils;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
+import cn.flaty.NettyPush.utils.AssertUtils;
 
-public class NettyConnection implements Serializable {
+public class NettyConnection {
+	
 	
 	private ChannelHandlerContext context;
 
@@ -20,7 +19,7 @@ public class NettyConnection implements Serializable {
 	
 	public  ChannelFuture writeAndFlush(Object msg){
 		 return context.writeAndFlush(msg);
-	 }
+	}
 	
 
 }
