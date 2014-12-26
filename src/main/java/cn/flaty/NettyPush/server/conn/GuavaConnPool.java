@@ -1,5 +1,6 @@
 package cn.flaty.NettyPush.server.conn;
 
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -58,6 +59,11 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 	public boolean touch(String key) {
 		cache.refresh(key);
 		return true;
+	}
+
+	@Override
+	public Map<String, NettyConnection> asMap() {
+		return cache.asMap();
 	}
 
 

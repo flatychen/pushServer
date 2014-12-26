@@ -14,16 +14,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.flaty.NettyPush.services.PushService;
+import cn.flaty.NettyPush.utils.beanFactoryUtils;
 
 public class MainFrame extends JFrame {
 
 	
 	
-	@Autowired
-	private PushService pushService;
+	private PushService pushService = beanFactoryUtils.getPushService();
 
 	private JPanel contentPane;
 
@@ -62,8 +63,9 @@ public class MainFrame extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String _s = textArea.getText().trim();
-				System.out.println(_s);
-				pushService.send(_s);
+				if(StringUtils.isNotEmpty(_s)){
+					pushService.sendTest(_s);
+				}
 				textArea.setText("");
 			}
 		});

@@ -64,11 +64,6 @@ public class DefaultListener implements Listener{
 		}
 	}
 
-	public void setLog(Logger log) {
-		this.log = log;
-	}
-
-	
 	@Required
 	public void setChannelInitializer(ChannelInitializer<Channel> channelInitializer) {
 		this.channelInitializer = channelInitializer;

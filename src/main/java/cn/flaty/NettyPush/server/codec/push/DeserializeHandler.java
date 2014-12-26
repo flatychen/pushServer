@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import cn.flaty.NettyPush.server.conn.NettyConnection;
-import cn.flaty.NettyPush.services.DeserializeService;
+import cn.flaty.NettyPush.services.ClientDispacherService;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -15,13 +15,13 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	
-	private DeserializeService deserialize;
+	private ClientDispacherService deserialize;
 	
 	private Logger log = LoggerFactory.getLogger(DeserializeHandler.class);
 
 	public DeserializeHandler() {
 		super();
-		deserialize = beanFactoryUtils.getDeserializeService();
+		deserialize = beanFactoryUtils.getClientDispacherService();
 	}
 
 	@Override

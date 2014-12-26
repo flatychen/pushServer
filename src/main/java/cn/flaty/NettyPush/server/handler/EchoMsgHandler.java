@@ -10,6 +10,7 @@ import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.Executors;
 
@@ -23,12 +24,13 @@ public class EchoMsgHandler extends ChannelInboundHandlerAdapter {
 			throws Exception {
 		ByteBuf in = (ByteBuf) msg;
 		String s = in.toString(CharsetUtil.UTF_8);
+		System.out.println(Arrays.toString(s.getBytes()));
 		System.out.println(MessageFormat.format("received from [{1}]; msg:{3}",
 				1, getRemoteHost(ctx), 3, s));
-		in.release();
-		String s2 =  EchoMsgHandler.getRandomString(4096);
-		System.out.println(s2);
-		this.writeMsg(ctx, s2);
+		//in.release();
+		//String s2 =  EchoMsgHandler.getRandomString(4096);
+		//System.out.println(s2);
+		//this.writeMsg(ctx, s2);
 
 	}
 

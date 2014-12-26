@@ -1,5 +1,6 @@
 package cn.flaty.NettyPush.server.conn;
 
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import cn.flaty.NettyPush.utils.AssertUtils;
@@ -17,8 +18,8 @@ public class NettyConnection {
 	
 	
 	
-	public  ChannelFuture writeAndFlush(Object msg){
-		 return context.writeAndFlush(msg);
+	public  ChannelFuture writeAndFlush(String msg){
+		 return context.writeAndFlush(Unpooled.wrappedBuffer(msg.getBytes()));
 	}
 	
 

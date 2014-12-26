@@ -20,14 +20,21 @@ public class Main {
 	}
 
 	private void start() {
+		
 		this.initSpringContext();
+	
+		MainFrame.initFrame();
+		
 		this.initListener();
+		
+		
 	}
 
 	private void initListener() {
+		
 		Listener listener = context.getBean(LISTENER_NAME, Listener.class);
 		listener.start();
-		MainFrame.initFrame();
+		
 	}
 
 	public void initSpringContext() {

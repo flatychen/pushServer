@@ -11,6 +11,8 @@ import cn.flaty.NettyPush.server.codec.push.PushFrameDecoder;
 import cn.flaty.NettyPush.server.codec.push.PushFrameEncoder;
 import cn.flaty.NettyPush.server.codec.push.SerializeHandler;
 import cn.flaty.NettyPush.server.codec.push.SplitFrameDecoder;
+import cn.flaty.NettyPush.server.handler.EchoMsgHandler;
+import cn.flaty.NettyPush.server.handler.TestHandler;
 
 public class PushChannelInitializer extends  AbstractChannelInitializer{
 
@@ -19,12 +21,12 @@ public class PushChannelInitializer extends  AbstractChannelInitializer{
 	
 	@Override
 	protected void initPipeline(ChannelPipeline pipeline) {
-		
 		// 解码器
-		pipeline.addLast(new SplitFrameDecoder());
-		pipeline.addLast(new PushFrameDecoder());
-		pipeline.addLast(new DeserializeHandler());
-		
+		pipeline.addLast(new TestHandler());
+//		pipeline.addLast(new SplitFrameDecoder());
+//		pipeline.addLast(new PushFrameDecoder());
+//		pipeline.addLast(new DeserializeHandler());
+////		
 		
 		
 		

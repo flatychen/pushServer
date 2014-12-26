@@ -11,11 +11,9 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:component-scan base-package="cn.flaty.*" />
 
-	<context:property-placeholder location="classpath:server.properties" />
-
-
-
+	<context:property-placeholder location="classpath:server.properties,classpath:jdbc.properties" />
 
 	<import resource="applicationServer.xml" />
 	<import resource="applicationConn.xml" />
+	<import resource="applicationDataSource.xml" />
 </beans>
