@@ -1,20 +1,16 @@
 package cn.flaty.NettyPush.server.codec.push;
 
-import java.util.List;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageCodec;
-import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.MessageToByteEncoder;
-import cn.flaty.NettyPush.server.frame.PushFrame;
 
-public class PushFrameEncoder extends MessageToByteEncoder<ByteBuf> {
+public class PushFrameEncoder extends MessageToByteEncoder<String> {
 
 	@Override
-	protected void encode(ChannelHandlerContext ctx, ByteBuf msg, ByteBuf out)
+	protected void encode(ChannelHandlerContext ctx, String msg, ByteBuf out)
 			throws Exception {
+		System.out.println("PushFrameEncoder");
+	
 		
 	}
 

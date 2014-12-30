@@ -19,7 +19,7 @@ public class PushFrameHeadler {
 	 */
 	private byte extend2;
 	
-	/** 数据包长 **/
+	/** 数据帧长 **/
 	private int length;
 
 	public byte getEncode() {

@@ -18,7 +18,7 @@ import cn.flaty.NettyPush.clientRepo.pageSetter.PageSqlSetter;
 
 
 /**
- * Spring jdbcTemplate 包装器类，提供基本SQL操作
+ * Spring jdbcTemplate 帧装器类，提供基本SQL操作
  * 
  * @author flatychen
  * 

@@ -27,6 +27,7 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg)
 			throws Exception {
+		log.info(msg.length()+"");
 		log.info(msg);
 		NettyConnection conn = new NettyConnection(ctx);
 		deserialize.dispacher(conn, msg);

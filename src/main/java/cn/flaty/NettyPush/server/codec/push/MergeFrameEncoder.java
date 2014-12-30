@@ -1,9 +1,7 @@
 package cn.flaty.NettyPush.server.codec.push;
 
-import cn.flaty.NettyPush.server.frame.PushFrame;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
-import io.netty.handler.codec.MessageToByteEncoder;
+import cn.flaty.NettyPush.server.frame.FrameHead;
 
 
 /**
@@ -13,7 +11,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 public class MergeFrameEncoder extends LengthFieldPrepender {
 
 	public MergeFrameEncoder(){
-		super(PushFrame.head_length_bytes,PushFrame.head_bytes - PushFrame.head_length_bytes, false);
+		super(FrameHead.head_length_bytes,FrameHead.head_bytes - FrameHead.head_length_bytes, false);
 	}
 
 }

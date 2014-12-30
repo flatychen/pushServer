@@ -10,25 +10,19 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import cn.flaty.NettyPush.server.frame.PushFrame;
+import cn.flaty.NettyPush.server.frame.FrameHead;
 
 public class PushFrameDecoder extends ByteToMessageDecoder {
 	
 	
-	/**
-	 * 报文头长度
-	 */
-	private static int _headLength = PushFrame.head_bytes - PushFrame.head_length_bytes;
 	
-	/**
-	 * 报文头，四个字节
-	 */
-	private byte head[] = new byte[_headLength];
-
 	
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
+		
+		
+		
 		// 解析报文头
 		try {
 			this.praseHeader(in);
