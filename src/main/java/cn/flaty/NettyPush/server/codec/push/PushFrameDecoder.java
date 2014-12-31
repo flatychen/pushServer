@@ -9,106 +9,97 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cn.flaty.NettyPush.server.frame.FrameHead;
+import cn.flaty.NettyPush.server.frame.SimplePushFrame;
+import cn.flaty.NettyPush.utils.AssertUtils;
 
 public class PushFrameDecoder extends ByteToMessageDecoder {
 	
+	private Logger log  = LoggerFactory.getLogger(PushFrameDecoder.class);
+
+	private FrameHead frameHead;
 	
-	
-	
+	private SimplePushFrame pushFrame;
+
+	public PushFrameDecoder(FrameHead frameHead) {
+		super();
+		AssertUtils.notNull(frameHead, "----> frameHead 不能为空 ");
+		this.frameHead = frameHead;
+	}
+
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
 		
-		
-		
-		// 解析报文头
-		try {
-			this.praseHeader(in);
-		} catch (Exception e) {
-			e.printStackTrace();
+		int bytesHaveRead = in.readableBytes();
+		if( bytesHaveRead <= frameHead.byteLength()){
+			log.warn("----> 空报文！");
+			in.release();
 			return ;
 		}
+		byte [] frame = new byte[bytesHaveRead];
+		in.readBytes(frame);
+		pushFrame = new SimplePushFrame(frameHead, frame);
+		
 		// 解析报文
-		String _s = null;
-		try {
-			_s = this.praseBody(in);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ;
-		}
-		if(StringUtils.isNotBlank(_s)){
-			out.add(_s);
-		}
+		String _s = this.praseFrame();
+		out.add(_s);
 	}
 
-	/**
-	 * 解析报文体
-	 * @param in
-	 * @return
-	 */
-	private String praseBody(ByteBuf in) {
-		int _bytes = in.readableBytes();
-		byte[] b = new byte[_bytes];
-		in.readBytes(b);
-		return setCharset(this.decryptBody(b));
+	private String praseFrame() {
+		byte encypeType = pushFrame.getEncypeType();
+		byte charsetType = pushFrame.getEncypeType();
+		byte [] result = null;
+		result = this.decryptBody(encypeType,pushFrame.getBody());
+		
+		
+		return  this.getCharsetType(charsetType,result);
 	}
 
-	
+
+	private String getCharsetType(byte charsetType, byte[] result) {
+		byte[] _b = result;
+		String s = null;
+		switch (charsetType) {
+		case 0:
+			s = new String(_b);
+			break;
+		case 1:
+			s = new String(_b , CharsetUtil.UTF_8);
+			break;
+		case 2:
+			s = new String(_b , CharsetUtil.US_ASCII);
+			break;
+		case 3:
+			s = new String(_b , Charset.forName("gbk"));
+			break;
+		case 4:
+			s = new String(_b , Charset.forName("gb2312"));
+			break;
+		}
+		return s;
+	}
+
 	/**
 	 * 解密
+	 * 
 	 * @param b
 	 * @return
 	 */
-	private byte[] decryptBody(byte b[]){
-		byte charset =  head[0];
-		byte[] _b= null;
-		switch (charset) {
-		case 1:
-			break;
+	private byte[] decryptBody(byte encypeType,byte b[]) {
+		byte[] _b = null;
+		switch (encypeType) {
 		case 0:
 			_b = b;
 			break;
 		}
 		return _b;
-		
+
 	}
-	
-	/**
-	 * 设置编码
-	 * @param b
-	 * @return
-	 */
-	private String setCharset(byte b[]){
-		byte charset =  head[1];
-		String result = null;
-		switch (charset) {
-		case 0:
-			result = new  String(b,CharsetUtil.US_ASCII);
-			break;
-		case 1:
-			result = new  String(b,CharsetUtil.UTF_8);
-			break;
-		case 2:
-			result = new  String(b,Charset.forName("GB2312"));
-			break;
-		}
-		return result;
-		
-	}
-	
-	
-	/**
-	 * 读取报文头
-	 * @param in
-	 */
-	private void praseHeader(ByteBuf in){
-		in.readBytes(head);
-	}
-	
-	
-	
-	
+
+
 
 }

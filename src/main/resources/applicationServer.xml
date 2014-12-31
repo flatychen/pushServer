@@ -19,9 +19,10 @@
 
 	<bean id="socketChannelInitializer"
 		class="cn.flaty.NettyPush.server.channelInitializer.PushChannelInitializer">
+		<property name="frameHeader" ref="frameHeader" ></property>
 	</bean>
 
-
+	<bean id="frameHeader"  class="cn.flaty.NettyPush.server.frame.SimplePushHead"></bean>
 
 
 

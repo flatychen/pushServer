@@ -18,10 +18,6 @@ public class SocketChannelInitializer extends  AbstractChannelInitializer{
 	protected void initPipeline(ChannelPipeline pipeline) {
 		
 		// 解码器
-		pipeline.addLast(new SplitFrameDecoder());
-		pipeline.addLast(new PushFrameDecoder());
-		pipeline.addLast(new DeserializeHandler());
-		
 		
 		
 		
