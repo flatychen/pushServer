@@ -17,7 +17,7 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 	
 	private Logger log = LoggerFactory.getLogger(GuavaConnPool.class);
 
-	private long accessTime = 30;
+	private long accessTime = 30000;
 
 	private LoadingCache<String, NettyConnection> cache = CacheBuilder.newBuilder()
 			.expireAfterAccess(accessTime, TimeUnit.SECONDS).removalListener(new RemovalListener<String, NettyConnection>() {

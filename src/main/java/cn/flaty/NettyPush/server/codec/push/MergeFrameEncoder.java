@@ -11,7 +11,7 @@ import cn.flaty.NettyPush.server.frame.FrameHead;
 public class MergeFrameEncoder extends LengthFieldPrepender {
 
 	public MergeFrameEncoder(FrameHead frameHead){
-		super(frameHead.byteLength(),-frameHead.headLength(),false);
+		super(frameHead.byteLength(),- frameHead.headLength(),false);
 	}
 
 }

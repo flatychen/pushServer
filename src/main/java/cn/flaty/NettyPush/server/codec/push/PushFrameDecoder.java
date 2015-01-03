@@ -34,6 +34,8 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
 		
+		log.info(in.refCnt()+"");
+		
 		int bytesHaveRead = in.readableBytes();
 		if( bytesHaveRead <= frameHead.byteLength()){
 			log.warn("----> 空报文！");

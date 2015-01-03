@@ -1,12 +1,15 @@
 package cn.flaty.NettyPush.server;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.MessageSizeEstimator;
+import io.netty.channel.MessageSizeEstimator.Handle;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
@@ -49,6 +52,19 @@ public class DefaultListener implements Listener{
 //					.childOption(ChannelOption.SO_KEEPALIVE, true)
 //					.childOption(ChannelOption.TCP_NODELAY, true) 
 //					.childOption(ChannelOption.SO_REUSEADDR, true) 
+					.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT) // 使用内存池 回收堆外内存
+//					.childOption(ChannelOption.MESSAGE_SIZE_ESTIMATOR, new MessageSizeEstimator() {
+//						@Override
+//						public Handle newHandle() {
+//							return new Handle() {
+//								@Override
+//								public int size(Object msg) {
+//									return 256;
+//								}
+//							};
+//						}
+//					}) // 使用内存池 回收堆外内存
+					
 					.localAddress(host, port)
 					.handler(new LoggingHandler(LogLevel.INFO))
 					.childHandler(channelInitializer);

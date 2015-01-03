@@ -25,11 +25,16 @@ public class PushFrameEncoder extends MessageToByteEncoder<String> {
 			throws Exception {
 		
 		
+		System.out.println(out);
+		
+		
 		initHead();
 		
 		out.writeBytes(head);
 		System.out.println(Arrays.toString(msg.getBytes()));
+		System.out.println(Arrays.toString("ab".getBytes()));
 		out.writeBytes(msg.getBytes());
+		System.out.println(out);
 	}
 
 	private void initHead() {
