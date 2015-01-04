@@ -3,18 +3,16 @@ package cn.flaty.NettyPush.server.codec.push;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.util.CharsetUtil;
 
-import java.nio.charset.Charset;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.flaty.NettyPush.server.frame.FrameHead;
 import cn.flaty.NettyPush.server.frame.SimplePushFrame;
 import cn.flaty.NettyPush.utils.AssertUtils;
+import cn.flaty.NettyPush.utils.MyCharsetUtil;
 
 public class PushFrameDecoder extends ByteToMessageDecoder {
 	
@@ -52,10 +50,10 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 	}
 
 	private String praseFrame() {
-		byte encypeType = pushFrame.getEncypeType();
+		//byte encypeType = pushFrame.getEncypeType();
 		byte charsetType = pushFrame.getEncypeType();
-		byte [] result = null;
-		result = this.decryptBody(encypeType,pushFrame.getBody());
+		byte [] result = pushFrame.getBody();
+		//result = this.decryptBody(encypeType,pushFrame.getBody());
 		
 		
 		return  this.getCharsetType(charsetType,result);
@@ -70,16 +68,16 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 			s = new String(_b);
 			break;
 		case 1:
-			s = new String(_b , CharsetUtil.UTF_8);
+			s = new String(_b , MyCharsetUtil.UTF_8);
 			break;
 		case 2:
-			s = new String(_b , CharsetUtil.US_ASCII);
+			s = new String(_b , MyCharsetUtil.US_ASCII);
 			break;
 		case 3:
-			s = new String(_b , Charset.forName("gbk"));
+			s = new String(_b , MyCharsetUtil.GBK);
 			break;
 		case 4:
-			s = new String(_b , Charset.forName("gb2312"));
+			s = new String(_b , MyCharsetUtil.GB2312);
 			break;
 		}
 		return s;
