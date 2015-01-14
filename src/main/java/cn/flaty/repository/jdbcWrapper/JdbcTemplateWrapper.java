@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.clientRepo.jdbcWrapper;
+package cn.flaty.repository.jdbcWrapper;
 
 
 import java.text.MessageFormat;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import cn.flaty.NettyPush.base.PageBean;
 import cn.flaty.NettyPush.base.QueryPageObject;
-import cn.flaty.NettyPush.clientRepo.pageSetter.PageSqlSetter;
+import cn.flaty.repository.pageSetter.PageSqlSetter;
 
 
 /**

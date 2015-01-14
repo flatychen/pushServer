@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.clientRepo;
+package cn.flaty.repository.socketClient;
 
 import java.util.List;
 

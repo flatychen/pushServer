@@ -1,15 +1,13 @@
-package cn.flaty.NettyPush.clientRepo;
+package cn.flaty.repository.socketClient;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.flaty.NettyPush.clientRepo.jdbcWrapper.JdbcTemplateWrapper;
 import cn.flaty.NettyPush.model.ClientInfo;
+import cn.flaty.repository.jdbcWrapper.JdbcTemplateWrapper;
 
 @Repository
 public class MysqlClientRepository implements ClientRepository {

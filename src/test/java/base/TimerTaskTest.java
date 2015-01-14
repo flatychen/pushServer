@@ -8,7 +8,7 @@ import java.util.TimerTask;
 import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 
-import cn.flaty.NettyPush.clientRepo.ClientRepository;
+import cn.flaty.repository.socketClient.ClientRepository;
 
 public class TimerTaskTest {
 	

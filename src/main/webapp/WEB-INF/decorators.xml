@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/common">
+	<decorator name="base" page="base.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+</decorators>

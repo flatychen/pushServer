@@ -7,11 +7,22 @@
          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        ">
 
-	
+	<mvc:annotation-driven />
 
-	<bean name="connPool" class="cn.flaty.NettyPush.server.conn.GuavaConnPool">
+	<context:component-scan base-package="cn.flaty.views"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- jsp解析支持 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	
+
+	<!-- 静态资源解析支持 -->
+	<mvc:default-servlet-handler />
 
 </beans>

@@ -4,8 +4,13 @@
 	<groupId>cn.flaty</groupId>
 	<artifactId>NettyPush</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<properties>
-
+		
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
+		
 		<commons-dbcp-version>1.4</commons-dbcp-version>
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 		<!-- logs -->
@@ -13,6 +18,9 @@
 		<log4j-version>1.2.14</log4j-version>
 		<!-- spring -->
 		<org.springframework-version>3.2.8.RELEASE</org.springframework-version>
+		
+		<freemarker-version>2.3.20</freemarker-version>
+		
 		<!-- test -->
 		<junit-version>4.8.2</junit-version>
 	</properties>
@@ -102,7 +110,14 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- AspectJ -->
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -122,10 +137,11 @@
 			<version>1.2.2</version>
 		</dependency>
 
+		<!-- sitemesh -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.184</version>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
 		</dependency>
 
 		<dependency>

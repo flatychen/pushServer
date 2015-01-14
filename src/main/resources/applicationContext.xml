@@ -7,13 +7,20 @@
          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        ">
 
+
 	<!-- 强制 cglib 代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<context:component-scan base-package="cn.flaty.*" />
+	<context:component-scan base-package="cn.flaty.*"
+		use-default-filters="false">
+		<context:exclude-filter type="annotation"
+			expression="" />
+	</context:component-scan>
 
-	<context:property-placeholder location="classpath:server.properties,classpath:jdbc.properties" />
+	<context:property-placeholder
+		location="classpath:server.properties,classpath:jdbc.properties" />
 
-	<import resource="applicationServer.xml" />
-	<import resource="applicationConn.xml" />
 	<import resource="applicationDataSource.xml" />
+	<import resource="applicationServer.xml" />
+	<import resource="applicationMvc.xml" />
+	<import resource="applicationConn.xml" />
 </beans>

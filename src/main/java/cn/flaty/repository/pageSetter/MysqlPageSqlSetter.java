@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.clientRepo.pageSetter;
+package cn.flaty.repository.pageSetter;
 
 
 
