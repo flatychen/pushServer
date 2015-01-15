@@ -5,7 +5,9 @@
 	<artifactId>NettyPush</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
 		<commons-dbcp-version>1.4</commons-dbcp-version>
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 		<!-- logs -->
