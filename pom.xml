@@ -2,15 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.flaty</groupId>
-	<artifactId>NettyPush</artifactId>
+	<artifactId>nettyPusher</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
-		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
 		<commons-dbcp-version>1.4</commons-dbcp-version>
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 		<!-- logs -->
@@ -18,9 +18,9 @@
 		<log4j-version>1.2.14</log4j-version>
 		<!-- spring -->
 		<org.springframework-version>3.2.8.RELEASE</org.springframework-version>
-		
+
 		<freemarker-version>2.3.20</freemarker-version>
-		
+
 		<!-- test -->
 		<junit-version>4.8.2</junit-version>
 	</properties>
@@ -53,7 +53,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j-version}</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -110,14 +109,14 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -144,6 +143,36 @@
 			<version>2.4.2</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.3.Final</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -164,9 +193,27 @@
 			<version>${junit-version}</version>
 			<scope>test</scope>
 		</dependency>
-
-
-
-
 	</dependencies>
+
+
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.2.6.v20141205</version>
+					<configuration>
+						<reload>manual</reload>
+						<webApp>
+							<contextPath>/${project.artifactId}</contextPath>
+						</webApp>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>

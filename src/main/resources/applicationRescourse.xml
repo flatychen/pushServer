@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
        ">
-
-	<!-- 强制 cglib 代理 -->
-	<aop:aspectj-autoproxy proxy-target-class="true" />
 	
 	
+	<context:component-scan base-package="cn.flaty.*">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
-	<import resource="applicationRescourse.xml" />
-	<import resource="applicationTask.xml" />
-	<import resource="applicationDataSource.xml" />
-	<import resource="applicationServer.xml" />
+	<context:property-placeholder
+		location="classpath:server.properties,classpath:jdbc.properties" />
+
+
+
 </beans>

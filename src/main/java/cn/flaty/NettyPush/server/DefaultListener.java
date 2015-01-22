@@ -29,6 +29,7 @@ import cn.flaty.NettyPush.utils.RuntimeUtils;
  * @author flaty
  *
  */
+
 public class DefaultListener implements Listener{
 	
 	private  Logger log = LoggerFactory.getLogger(DefaultListener.class);
@@ -50,7 +51,7 @@ public class DefaultListener implements Listener{
 			ServerBootstrap sbs = new ServerBootstrap();
 			sbs.group(acceptor, worker).channel(NioServerSocketChannel.class)
 //					.childOption(ChannelOption.SO_KEEPALIVE, true)
-//					.childOption(ChannelOption.TCP_NODELAY, true) 
+					.childOption(ChannelOption.TCP_NODELAY, true) // 禁止 Nagle算法
 //					.childOption(ChannelOption.SO_REUSEADDR, true) 
 					.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT) // 使用内存池 回收堆外内存
 //					.childOption(ChannelOption.MESSAGE_SIZE_ESTIMATOR, new MessageSizeEstimator() {
