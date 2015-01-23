@@ -19,6 +19,7 @@
 		<!-- spring -->
 		<org.springframework-version>3.2.8.RELEASE</org.springframework-version>
 
+		<org.codehaus.jackson-version>1.9.8</org.codehaus.jackson-version>
 		<freemarker-version>2.3.20</freemarker-version>
 
 		<!-- test -->
@@ -128,6 +129,13 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>17.0</version>
+		</dependency>
+
+		<!-- Jackson JSON Processor -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
 		</dependency>
 
 		<dependency>
