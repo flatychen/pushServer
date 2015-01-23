@@ -13,10 +13,11 @@
 		</div>
 	</div>
 	<div class="am-u-lg-6">
-		<form class="am-form" action="${base}/pushMessage/create"
+		<form class="am-form" id="pushMessage_new" url="${base}/pushMessage/create"
 			method="post">
 			<fieldset>
-				<legend>新消息</legend>
+				<h2>新消息</h2>
+				<hr  class=" am-divider-default" />
 				<!-- <div class="am-form-group">
 					<label >消息描述</label> 
 					<input type="text"
@@ -35,78 +36,55 @@
 					<textarea  name="content" rows="5"
 						placeholder="通知内容 " required minlength="5" maxlength="50"></textarea>
 				</div>
+				
+				<div class="am-form-group">
+					<label >过期时间</label>
+				<input type="text" 	name="title"  placeholder="过期时间 " 
+						minlength="3">
+				</div>
 
-
-				<!--  <div class="am-checkbox">
-		      <label>
-		        <input type="checkbox"> 复选框，选我选我选我
-		      </label>
-		    </div>
-		
-		    <div class="am-radio">
-		      <label>
-		        <input type="radio" name="doc-radio-1" value="option1" checked>
-		        单选框 - 选项1
-		      </label>
-		    </div>
-		
-		    <div class="am-radio">
-		      <label>
-		        <input type="radio" name="doc-radio-1" value="option2">
-		        单选框 - 选项2
-		      </label>
-		    </div>
-		
-		    <div class="am-form-group">
-		      <label class="am-checkbox-inline">
-		        <input type="checkbox" value="option1"> 选我
-		      </label>
-		      <label class="am-checkbox-inline">
-		        <input type="checkbox" value="option2"> 同时可以选我
-		      </label>
-		      <label class="am-checkbox-inline">
-		        <input type="checkbox" value="option3"> 还可以选我
-		      </label>
-		    </div>
-		
-		    <div class="am-form-group">
-		      <label class="am-radio-inline">
-		        <input type="radio"  value="" name="docInlineRadio"> 每一分
-		      </label>
-		      <label class="am-radio-inline">
-		        <input type="radio" name="docInlineRadio"> 每一秒
-		      </label>
-		      <label class="am-radio-inline">
-		        <input type="radio" name="docInlineRadio"> 多好
-		      </label>
-		    </div>
-		
-		    <div class="am-form-group">
-		      <label for="doc-select-1">下拉多选框</label>
-		      <select id="doc-select-1">
-		        <option value="option1">选项一...</option>
-		        <option value="option2">选项二.....</option>
-		        <option value="option3">选项三........</option>
-		      </select>
-		      <span class="am-form-caret"></span>
-		    </div>
-		
-		    <div class="am-form-group">
-		      <label for="doc-select-2">多选框</label>
-		      <select multiple class="" id="doc-select-2">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		        <option>5</option>
-		      </select>
-		    </div>
-		
-		    <div class="am-form-group">
-		      <label for="doc-ta-1">文本域</label>
-		      <textarea class="" rows="5" id="doc-ta-1"></textarea>
-		    </div> -->
-
+				<hr>
+				
+				<div class="am-form-group">
+					<h2>后续操作</h2>
+					<hr  class=" am-divider-default" />
+					 <label class="am-radio-inline">
+				        <input type="radio"  value="1" name="pushAction"  checked="checked" >  打开应用 
+				      </label>
+				      <label class="am-radio-inline">
+				        <input type="radio" value="2" name="pushAction"> 打开URL
+				      </label>
+				      <label class="am-radio-inline">
+				        <input type="radio" value="3" name="pushAction"> 打开ACTIVITY
+				      </label>
+				</div>
+				<div class="am-form-group">
+						<input type="text"
+							name="openUrl"  placeholder="url地址 " 
+							>
+					</div>
+					<div class="am-form-group">
+						<input type="text"
+							name="openActivity"  placeholder="activity地址 " 
+							>
+					</div>
+				
+				
+				
+				<div class="am-form-group">
+					<h2>提醒方式</h2>
+					<hr  class=" am-divider-default" />
+					 <label class="am-checkbox-inline">
+				        <input type="checkbox"  name="flags" value="1" checked="checked" > 选我
+				      </label>
+				      <label class="am-checkbox-inline">
+				        <input type="checkbox" name="flags" value="2" checked="checked"> 同时可以选我
+				      </label>
+				      <label class="am-checkbox-inline">
+				        <input type="checkbox" name="flags" value="3" checked="checked"> 还可以选我
+				      </label>
+				</div>
+				
 				<p>
 					<button type="submit" class="am-btn am-btn-primary">提交</button>
 				</p>
@@ -115,5 +93,6 @@
 
 	</div>
 	<div class="am-u-lg-2"></div>
+	<script type="text/javascript"  src="${base}/res/module/pushMessage/new.js"></script>
 </body>
 </html>

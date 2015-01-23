@@ -1,9 +1,13 @@
 package cn.flaty.NettyPush.model;
 
 public class GenericMessage {
-	
+
+	public static int server_push_text = 1024;
+
+	public static int client_heart = 4096;
+
 	private int commond;
-	
+
 	private String message;
 
 	public int getCommond() {

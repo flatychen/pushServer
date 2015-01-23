@@ -13,7 +13,7 @@
 
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="cn.flaty.views"
+	<context:component-scan base-package="cn.flaty.pushAdmin.views"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -31,7 +31,7 @@
 	
 	
 	<mvc:interceptors >
-		<bean class="cn.flaty.views.BaseInterceptor" />
+		<bean class="cn.flaty.pushAdmin.views.BaseInterceptor" />
 	</mvc:interceptors>
 	
 </beans>

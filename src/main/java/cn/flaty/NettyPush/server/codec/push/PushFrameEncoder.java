@@ -21,6 +21,7 @@ public class PushFrameEncoder extends MessageToByteEncoder<String> {
 	protected void encode(ChannelHandlerContext ctx, String msg, ByteBuf out)
 			throws Exception {
 		SimplePushOutFrame frame = new SimplePushOutFrame(frameHead, msg.getBytes());
+		System.out.println(msg);
 		out.writeBytes(frame.getHead());
 		out.writeBytes(frame.getBody());
 	}

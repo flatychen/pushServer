@@ -11,7 +11,7 @@ import cn.flaty.NettyPush.model.ClientInfo;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.server.conn.NettyConnectionPool;
 import cn.flaty.NettyPush.utils.AssertUtils;
-import cn.flaty.repository.socketClient.ClientRepository;
+import cn.flaty.pushAdmin.repository.socketClient.ClientRepository;
 
 
 

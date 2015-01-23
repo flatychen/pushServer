@@ -15,7 +15,8 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet"  href="${base}/res/amazonUi/css/amazeui.min.css" >
   <link rel="stylesheet"  href="${base}/res/amazonUi/css/admin.css" >
-  
+  <script src="${base}/res/amazonUi/js/jquery.min.js"></script>
+  <script src="${base}/res/amazonUi/js/amazeui.min.js"></script>
   <decorator:head />
 </head>
 <body>
@@ -68,8 +69,7 @@
   <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
 </footer> -->
 
-<script src="${base}/res/amazonUi/js/jquery.min.js"></script>
-<script src="${base}/res/amazonUi/js/amazeui.min.js"></script>
+
 
 </body>
 </html>
