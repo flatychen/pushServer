@@ -28,18 +28,18 @@
 				<div class="am-form-group">
 					<label >标题</label> <input type="text"
 						name="title"  placeholder="通知标题 " required
-						minlength="3">
+						minlength="1">
 				</div>
 
 				<div class="am-form-group">
 					<label >内容</label>
 					<textarea  name="content" rows="5"
-						placeholder="通知内容 " required minlength="5" maxlength="50"></textarea>
+						placeholder="通知内容 " required minlength="2" maxlength="50"></textarea>
 				</div>
 				
 				<div class="am-form-group">
 					<label >过期时间</label>
-				<input type="text" 	name="title"  placeholder="过期时间 " 
+				<input type="text"  placeholder="过期时间 " 
 						minlength="3">
 				</div>
 
@@ -75,18 +75,18 @@
 					<h2>提醒方式</h2>
 					<hr  class=" am-divider-default" />
 					 <label class="am-checkbox-inline">
-				        <input type="checkbox"  name="flags" value="1" checked="checked" > 选我
+				        <input type="checkbox"  name="flags" value="1" checked="checked" > 振动提醒
 				      </label>
 				      <label class="am-checkbox-inline">
-				        <input type="checkbox" name="flags" value="2" checked="checked"> 同时可以选我
+				        <input type="checkbox" name="flags" value="2" checked="checked"> 声音提醒
 				      </label>
 				      <label class="am-checkbox-inline">
-				        <input type="checkbox" name="flags" value="3" checked="checked"> 还可以选我
+				        <input type="checkbox" name="flags" value="3" checked="checked"> 呼吸灯  
 				      </label>
 				</div>
 				
 				<p>
-					<button type="submit" class="am-btn am-btn-primary">提交</button>
+					<button type="submit" class="am-btn am-btn-primary submit">提交</button>
 				</p>
 			</fieldset>
 		</form>

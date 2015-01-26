@@ -4,8 +4,10 @@ $(function(){
 		submit:function(e){
 			var _form = $('#pushMessage_new');
 			if(this.isFormValid()){
+				_form.find(".submit").attr("disabled",true);
 				$.post(_form.attr("url"),_form.serialize(),function(data){
-					console.log(data)
+					_form.find(".submit").attr("disabled",false);
+					console.log(data);
 				},"json")
 			}
 			return false;
