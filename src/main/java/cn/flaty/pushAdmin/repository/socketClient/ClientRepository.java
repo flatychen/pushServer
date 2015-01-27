@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang.time.DateUtils;
 
-import cn.flaty.NettyPush.model.ClientInfo;
+import cn.flaty.NettyPush.entity.ClientInfo;
 
 public interface ClientRepository {
 

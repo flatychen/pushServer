@@ -6,11 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.model.GenericMessage;
+import cn.flaty.NettyPush.entity.GenericMessage;
+import cn.flaty.NettyPush.entity.PushMessage;
 import cn.flaty.NettyPush.services.PushService;
 import cn.flaty.NettyPush.utils.FastJsonUtils;
 import cn.flaty.pushAdmin.views.BaseDataWrapper;
-import cn.flaty.pushAdmin.views.push.PushMessage;
+import cn.flaty.pushAdmin.views.push.PushMessageFormBean;
 
 @Service
 public class PushServiceProxy  {
@@ -21,8 +22,20 @@ public class PushServiceProxy  {
 	private Logger log = LoggerFactory.getLogger(PushServiceProxy.class);
 
 
-	public BaseDataWrapper sendTest(PushMessage pushMessage) {
+	public BaseDataWrapper sendTest(PushMessageFormBean pushMessageBean) {
+		
+		
 		BaseDataWrapper json = new BaseDataWrapper();
+		PushMessage pushMessage = null;
+		try {
+			pushMessage  = pushMessageBean.parsePushMessage();
+		} catch (Exception e) {
+			e.printStackTrace();
+			json.setSuccess(false);
+			return json;
+		}
+		
+		
 		String _msg = FastJsonUtils.toJsonString(pushMessage);
 		if (StringUtils.isEmpty(_msg)) {
 			json.setSuccess(false);

@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.model.ClientInfo;
+import cn.flaty.NettyPush.entity.ClientInfo;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 
 /**

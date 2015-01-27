@@ -75,13 +75,13 @@
 					<h2>提醒方式</h2>
 					<hr  class=" am-divider-default" />
 					 <label class="am-checkbox-inline">
-				        <input type="checkbox"  name="flags" value="1" checked="checked" > 振动提醒
+				        <input type="checkbox"  name="flags" value="1" checked="checked" > 声音提醒 
 				      </label>
 				      <label class="am-checkbox-inline">
-				        <input type="checkbox" name="flags" value="2" checked="checked"> 声音提醒
+				        <input type="checkbox" name="flags" value="2" checked="checked"> 振动提醒
 				      </label>
 				      <label class="am-checkbox-inline">
-				        <input type="checkbox" name="flags" value="3" checked="checked"> 呼吸灯  
+				        <input type="checkbox" name="flags" value="4" checked="checked"> 呼吸灯  
 				      </label>
 				</div>
 				

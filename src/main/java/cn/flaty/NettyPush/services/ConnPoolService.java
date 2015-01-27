@@ -7,7 +7,7 @@ import java.util.TimerTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.model.ClientInfo;
+import cn.flaty.NettyPush.entity.ClientInfo;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.server.conn.NettyConnectionPool;
 import cn.flaty.NettyPush.utils.AssertUtils;

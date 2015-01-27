@@ -1,31 +1,27 @@
 package cn.flaty.pushAdmin.views.push;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import cn.flaty.NettyPush.entity.PushMessage;
 
-public class PushMessage {
-	
-	
+public class PushMessageFormBean {
+
 	@NotEmpty
 	private String title;
-	
+
 	@NotEmpty
 	private String content;
 
 	@NotEmpty
 	private byte[] flags;
-	
-	
-	private byte pushAction = 1;
-	
-	
+
+	private int pushAction ;
+
 	private String openUrl;
-	
+
 	private String openActivity;
-	
-	
-	
-	
+
 	public byte[] getFlags() {
 		return flags;
 	}
@@ -34,8 +30,13 @@ public class PushMessage {
 		this.flags = flags;
 	}
 
-	public byte getPushAction() {
+
+	public int getPushAction() {
 		return pushAction;
+	}
+
+	public void setPushAction(int pushAction) {
+		this.pushAction = pushAction;
 	}
 
 	public void setPushAction(byte pushAction) {
@@ -66,8 +67,6 @@ public class PushMessage {
 		this.title = title;
 	}
 
-	
-
 	public String getContent() {
 		return content;
 	}
@@ -76,7 +75,21 @@ public class PushMessage {
 		this.content = content;
 	}
 
-	
-	
+	public PushMessage parsePushMessage() {
+		PushMessage pm = new PushMessage();
+		
+		for (int i = 0; i < this.flags.length; i++) {
+			pm.setFlag(pm.getFlag() | this.flags[i]);
+		}
+		
+		try {
+			PropertyUtils.copyProperties(pm, this);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} 
+		
+		return pm;
+	}
 
 }

@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.model;
+package cn.flaty.NettyPush.entity;
 
 public class GenericMessage {
 

@@ -33,7 +33,7 @@ public class PushMessageController {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public BaseDataWrapper create(@Valid PushMessage msg){
+	public BaseDataWrapper create(@Valid PushMessageFormBean msg){
 		log.info(msg.toString());
 		return pushService.sendTest(msg);
 	}
