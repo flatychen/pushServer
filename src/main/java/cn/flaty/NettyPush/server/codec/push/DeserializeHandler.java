@@ -1,5 +1,7 @@
 package cn.flaty.NettyPush.server.codec.push;
 
+import java.text.MessageFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -15,9 +17,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	
-	private ClientDispacherService deserialize;
 	
 	private Logger log = LoggerFactory.getLogger(DeserializeHandler.class);
+
+	private ClientDispacherService deserialize;
+
 
 	public DeserializeHandler() {
 		super();
@@ -27,12 +31,16 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg)
 			throws Exception {
-		log.info(msg.length()+"");
+		log.info(String.valueOf(msg.length()));
 		log.info(msg);
 		NettyConnection conn = new NettyConnection(ctx);
 		deserialize.dispacher(conn, msg);
 	}
 
-	
-	
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		log.error(MessageFormat.format("{0} {1}", ctx.channel().remoteAddress(),cause.getMessage()));
+	}
+
 }

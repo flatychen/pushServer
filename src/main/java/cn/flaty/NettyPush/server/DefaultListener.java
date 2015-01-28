@@ -68,7 +68,7 @@ public class DefaultListener implements Listener{
 					.localAddress(host, port)
 					.handler(new LoggingHandler(LogLevel.INFO))
 					.childHandler(channelInitializer);
-			log.info(MessageFormat.format("---> server start and listen on port:{0}",this.port+""));
+			log.info(MessageFormat.format("server start and listen on port:{0}",String.valueOf(this.port)));
 			ChannelFuture f = sbs.bind().sync();
 			f.channel().closeFuture().sync();
 		} catch (InterruptedException e) {
