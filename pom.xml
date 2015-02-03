@@ -7,9 +7,9 @@
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
 		<commons-dbcp-version>1.4</commons-dbcp-version>
 		<org.aspectj-version>1.7.2</org.aspectj-version>
 		<!-- logs -->

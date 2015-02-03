@@ -14,9 +14,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
-	
+
 	private ClientDispacherService deserialize;
-	
+
 	private Logger log = LoggerFactory.getLogger(DeserializeHandler.class);
 
 	public DeserializeHandler() {
@@ -27,12 +27,11 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg)
 			throws Exception {
-		log.info(msg.length()+"");
-		log.info(msg);
+		log.info("receive msg:{}",msg);
 		NettyConnection conn = new NettyConnection(ctx);
 		deserialize.dispacher(conn, msg);
 	}
 
-	
-	
+
+
 }
