@@ -23,7 +23,7 @@ public class PushService extends ConnPoolService {
 		NettyConnection conn = null;
 		for (ClientInfo clientInfo : clients) {
 			try {
-				conn = pool.get(clientInfo.getCid());
+				conn = pool.get(clientInfo.getDid());
 			} catch (Exception e) {
 				e.printStackTrace();
 				continue;

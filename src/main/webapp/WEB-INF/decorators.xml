@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/jsp/common">
+	<excludes>
+		<pattern>/console/*</pattern>
+	</excludes>
 	<decorator name="base" page="base.jsp">
 		<pattern>/*</pattern>
 	</decorator>

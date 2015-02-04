@@ -186,13 +186,18 @@
 			<version>5.0.3.Final</version>
 		</dependency>
 
-
-
+		<!-- db -->
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.184</version>
+		</dependency>
+
+		<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
-		</dependency>
+		</dependency> -->
 
 
 		<!-- Test -->

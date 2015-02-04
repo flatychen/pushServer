@@ -17,39 +17,35 @@ import cn.flaty.pushAdmin.repository.socketClient.ClientRepository;
 
 @Service
 public abstract class ConnPoolService {
-	
+
 
 	private  volatile boolean isRefleshClient = false;
-	
+
 	@Autowired
 	private ClientRepository clientInfoRepo;
-	
+
 	@Autowired
 	protected NettyConnectionPool<String, NettyConnection> pool;
-	
-	protected static final int CONN_NEW = 100;
-
-	protected static final int CONN_KEEP_HEART = 101;
 
 
 	protected List<ClientInfo> queryClientInfo(ClientInfo client){
 		return clientInfoRepo.queryClients(client);
 	}
-	
-	
+
+
 	protected void saveClientInfo(ClientInfo client){
 		AssertUtils.notNull(client);
-		AssertUtils.notNull(client.getCid());
+		AssertUtils.notNull(client.getDid());
 		clientInfoRepo.insertClient(client);
 	}
-	
+
 	protected void resetClientExpire(ClientInfo client){
 		AssertUtils.notNull(client);
-		AssertUtils.notNull(client.getCid());
+		AssertUtils.notNull(client.getDid());
 		clientInfoRepo.updateClient(client);
 	}
-	
-	
+
+
 	protected void delexpireClients(){
 		this.isRefleshClient = true;
 		Timer refleshClientInfo = new Timer("refleshClientInfo");
@@ -66,7 +62,7 @@ public abstract class ConnPoolService {
 	protected boolean isRefleshClient() {
 		return isRefleshClient;
 	}
-	
-	
-	
+
+
+
 }

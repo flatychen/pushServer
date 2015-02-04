@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import cn.flaty.NettyPush.entity.ClientInfo;
 import cn.flaty.pushAdmin.repository.jdbcWrapper.JdbcTemplateWrapper;
 
-//@Repository
-public class MysqlClientRepository implements ClientRepository {
+@Repository
+public class H2ClientRepository implements ClientRepository {
 
 	@Autowired
 	private JdbcTemplateWrapper jdbc;
