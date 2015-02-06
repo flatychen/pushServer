@@ -7,7 +7,7 @@ public class ClientInfo {
 
 	private int appVer;
 
-	private int os;
+	private String os;
 
 	public String getDid() {
 		return did;
@@ -25,11 +25,11 @@ public class ClientInfo {
 		this.appVer = appVer;
 	}
 
-	public int getOs() {
+	public String getOs() {
 		return os;
 	}
 
-	public void setOs(int os) {
+	public void setOs(String os) {
 		this.os = os;
 	}
 

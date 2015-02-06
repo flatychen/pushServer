@@ -1,4 +1,4 @@
-package cn.flaty.pushAdmin.repository.socketClient;
+package cn.flaty.NettyPush.repository;
 
 import java.util.Date;
 import java.util.List;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import cn.flaty.NettyPush.entity.ClientInfo;
-import cn.flaty.pushAdmin.repository.jdbcWrapper.JdbcTemplateWrapper;
 
 @Repository
 public class H2ClientRepository implements ClientRepository {
@@ -30,7 +29,7 @@ public class H2ClientRepository implements ClientRepository {
 	@Override
 	public boolean delExpireClient() {
 		Date now = new Date();
-		Date d = new Date(now.getTime() - ClientRepository.second_30);
+		Date d = new Date(now.getTime() - ClientRepository.second_db_live);
 		String sql = " delete from tb_client where updateTime <= ? ";
 		return jdbc.saveORUpdate(sql, new Object[] { d.getTime() }) >= 1;
 	}

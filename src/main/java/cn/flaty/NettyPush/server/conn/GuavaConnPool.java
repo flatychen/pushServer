@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.flaty.NettyPush.repository.ClientRepository;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -14,13 +16,12 @@ import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
 
 public class GuavaConnPool implements NettyConnectionPool<String, NettyConnection> {
-	
+
 	private Logger log = LoggerFactory.getLogger(GuavaConnPool.class);
 
-	private long accessTime = 30000;
 
 	private LoadingCache<String, NettyConnection> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(accessTime, TimeUnit.SECONDS).removalListener(new RemovalListener<String, NettyConnection>() {
+			.expireAfterAccess(ClientRepository.second_db_live, TimeUnit.MILLISECONDS).removalListener(new RemovalListener<String, NettyConnection>() {
 				@Override
 				public void onRemoval(
 						RemovalNotification<String, NettyConnection> notification) {
@@ -30,10 +31,16 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 			.build(new CacheLoader<String, NettyConnection>(){
 				@Override
 				public NettyConnection load(String key) throws Exception {
-					log.info("---> loading a not exist key ### ");
-					return null;
+					NettyConnection conn = cache.get(key);
+					if(conn != null){
+						log.info("---> refresh key {} ",key);
+						return conn;
+					}else{
+						log.info("---> loading a not exist key {} ",key);
+						return null;
+					}
 				}
-				
+
 			});
 
 	@Override

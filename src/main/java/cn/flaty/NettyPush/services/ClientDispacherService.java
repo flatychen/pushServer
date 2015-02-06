@@ -1,7 +1,5 @@
 package cn.flaty.NettyPush.services;
 
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,19 +25,16 @@ public class ClientDispacherService extends ConnPoolService {
 	 * @param conn
 	 * @param msg
 	 */
-	public void dispacher(NettyConnection conn, String msg) {
-		this.validateAndSave(conn, msg);
-		GenericMessage m = FastJsonUtils.praseToObject(msg,
-				GenericMessage.class);
+	public void dispacher(NettyConnection conn, String data) {
+		GenericMessage m = new GenericMessage(data);
 		int commond = m.getCommond();
-
 		// 新连接
-		if (commond == GenericMessage.client_new) {
+		if (commond == GenericMessage.client_connected) {
 			this.validateAndSave(conn, m.getMessage());
 
-		// 心跳
+			// 心跳
 		} else if (commond == GenericMessage.client_heart) {
-			this.keepAlive(conn, m.getMessage());
+			this.keepAliveOfDb(m.getMessage());
 		} else {
 			log.warn("----> invalid commond type ");
 		}
@@ -47,33 +42,53 @@ public class ClientDispacherService extends ConnPoolService {
 	}
 
 	/**
-	 * 检测新连接，并保存
+	 * 检测新连接合法性，并保存
 	 *
 	 * @param conn
 	 * @param message
 	 */
 	private void validateAndSave(NettyConnection conn, String message) {
-		ClientInfo client = FastJsonUtils.praseToObject(message,
-				ClientInfo.class);
-		super.saveClientInfo(client);
-		if (!super.isRefleshClient()) {
-			super.delexpireClients();
+		log.info("new client:{}", message);
+		ClientInfo client = null;
+
+		try {
+			client = FastJsonUtils.praseToObject(message, ClientInfo.class);
+		} catch (Exception e) {
+			log.error("连接报文不合法: {}",e.getMessage());
+			return;
 		}
+
+		// 保存连接于连接池中和DB中
+		super.saveClientInfo(client);
 		pool.set(client.getDid(), conn);
+
+		// 自动刷新DB中数据
+	//	this.startRefleshClientOfDb();
+	}
+
+	private void startRefleshClientOfDb() {
+		if (!super.isRefleshClient()) {
+			super.delExpireClientsOfDb();
+		}
 	}
 
 	/**
 	 *
-	 * 维持心跳连接
+	 * 维持
 	 *
 	 * @param conn
 	 * @param message
 	 */
-	private void keepAlive(NettyConnection conn, String message) {
-		// ClientInfo client = FastJsonUtils.praseToObject(message,
-		// ClientInfo.class);
-		// super.resetClientExpire(client);
-		// pool.touch(client.getCid());
+	private void keepAliveOfDb(String message) {
+
+		log.info("heartBeat:{}", message);
+		ClientInfo client = FastJsonUtils.praseToObject(message,
+				ClientInfo.class);
+
+		System.out.println(pool.get(client.getDid()));;
+
+		super.resetClientExpire(client);
+		pool.touch(client.getDid());
 	}
 
 }

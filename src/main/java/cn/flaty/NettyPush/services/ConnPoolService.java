@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.repository.ClientRepository;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.server.conn.NettyConnectionPool;
 import cn.flaty.NettyPush.utils.AssertUtils;
-import cn.flaty.pushAdmin.repository.socketClient.ClientRepository;
 
 
 
@@ -19,7 +19,7 @@ import cn.flaty.pushAdmin.repository.socketClient.ClientRepository;
 public abstract class ConnPoolService {
 
 
-	private  volatile boolean isRefleshClient = false;
+	private  volatile boolean isRefleshing = false;
 
 	@Autowired
 	private ClientRepository clientInfoRepo;
@@ -46,21 +46,21 @@ public abstract class ConnPoolService {
 	}
 
 
-	protected void delexpireClients(){
-		this.isRefleshClient = true;
+	protected void delExpireClientsOfDb(){
+		this.isRefleshing = true;
 		Timer refleshClientInfo = new Timer("refleshClientInfo");
 		refleshClientInfo.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				clientInfoRepo.delExpireClient();
 			}
-		}, 1024, ClientRepository.second_30);
+		}, 1024, ClientRepository.second_db_live);
 	}
 
 
 
 	protected boolean isRefleshClient() {
-		return isRefleshClient;
+		return isRefleshing;
 	}
 
 

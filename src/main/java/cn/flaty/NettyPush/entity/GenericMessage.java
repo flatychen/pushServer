@@ -8,7 +8,7 @@ public class GenericMessage {
 
 	public static int client_heart = 4096;
 
-	public static int client_new = 4097;
+	public static int client_connected = 4097;
 
 	private int commond;
 
@@ -16,6 +16,12 @@ public class GenericMessage {
 
 	public int getCommond() {
 		return commond;
+	}
+
+	public GenericMessage(String message) {
+		super();
+		this.commond = Integer.parseInt(new String(message.substring(0, 4)));
+		this.message = message.substring(4, message.length());
 	}
 
 	public void setCommond(int commond) {
