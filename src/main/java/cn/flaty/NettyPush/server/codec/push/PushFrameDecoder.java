@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
+import java.net.InetSocketAddress;
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,7 +16,7 @@ import cn.flaty.NettyPush.server.frame.SimplePushInFrame;
 import cn.flaty.NettyPush.utils.AssertUtils;
 
 public class PushFrameDecoder extends ByteToMessageDecoder {
-	
+
 	private Logger log  = LoggerFactory.getLogger(PushFrameDecoder.class);
 
 	private FrameHead frameHead;
@@ -28,13 +30,16 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
-		
+
 		int bytesHaveRead = in.readableBytes();
-		if( bytesHaveRead <= frameHead.byteLength()){
-			log.warn("----> 空报文！");
+
+		if( bytesHaveRead == 0){
+			InetSocketAddress isa = (InetSocketAddress) ctx.channel().remoteAddress();
+			log.warn("----> {} 关闭 ", isa.toString());
 			in.release();
 			return ;
 		}
+
 		byte [] bytes = new byte[bytesHaveRead];
 		in.readBytes(bytes);
 		SimplePushInFrame frame = new SimplePushInFrame(frameHead, bytes);
@@ -42,6 +47,6 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 		out.add(_s);
 	}
 
-	
+
 
 }

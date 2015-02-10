@@ -186,6 +186,13 @@
 			<version>5.0.3.Final</version>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>2.6.8</version>
+		</dependency>
+
+
 		<!-- db -->
 		<dependency>
 			<groupId>com.h2database</groupId>
