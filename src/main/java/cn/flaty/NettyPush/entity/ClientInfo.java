@@ -3,6 +3,8 @@ package cn.flaty.NettyPush.entity;
 
 public class ClientInfo {
 
+	private String appKey;
+
 	private String did;
 
 	private int appVer;
@@ -15,6 +17,14 @@ public class ClientInfo {
 
 	public void setDid(String did) {
 		this.did = did;
+	}
+
+	public String getAppKey() {
+		return appKey;
+	}
+
+	public void setAppKey(String appKey) {
+		this.appKey = appKey;
 	}
 
 	public int getAppVer() {

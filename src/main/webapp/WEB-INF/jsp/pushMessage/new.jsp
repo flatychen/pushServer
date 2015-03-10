@@ -19,7 +19,7 @@
 				<h2>新消息</h2>
 				<hr  class=" am-divider-default" />
 				<!-- <div class="am-form-group">
-					<label >消息描述</label> 
+					<label >消息描述</label>
 					<input type="text"
 						name="title"  placeholder="消息描述 " required
 						minlength="3">
@@ -34,22 +34,22 @@
 				<div class="am-form-group">
 					<label >内容</label>
 					<textarea  name="content" rows="5"
-						placeholder="通知内容 " required minlength="2" maxlength="50"></textarea>
+						placeholder="通知内容 " required minlength="1" maxlength="50"></textarea>
 				</div>
-				
+
 				<div class="am-form-group">
 					<label >过期时间</label>
-				<input type="text"  placeholder="过期时间 " 
-						minlength="3">
+				<input type="text"  placeholder="过期时间 "
+						>
 				</div>
 
 				<hr>
-				
+
 				<div class="am-form-group">
 					<h2>后续操作</h2>
 					<hr  class=" am-divider-default" />
 					 <label class="am-radio-inline">
-				        <input type="radio"  value="1" name="pushAction"  checked="checked" >  打开应用 
+				        <input type="radio"  value="1" name="pushAction"  checked="checked" >  打开应用
 				      </label>
 				      <label class="am-radio-inline">
 				        <input type="radio" value="2" name="pushAction"> 打开URL
@@ -60,31 +60,31 @@
 				</div>
 				<div class="am-form-group">
 						<input type="text"
-							name="openUrl"  placeholder="url地址 " 
+							name="openUrl"  placeholder="url地址 "
 							>
 					</div>
 					<div class="am-form-group">
 						<input type="text"
-							name="openActivity"  placeholder="activity地址 " 
+							name="openActivity"  placeholder="activity地址 "
 							>
 					</div>
-				
-				
-				
+
+
+
 				<div class="am-form-group">
 					<h2>提醒方式</h2>
 					<hr  class=" am-divider-default" />
 					 <label class="am-checkbox-inline">
-				        <input type="checkbox"  name="flags" value="1" checked="checked" > 声音提醒 
+				        <input type="checkbox"  name="flags" value="1" checked="checked" > 声音提醒
 				      </label>
 				      <label class="am-checkbox-inline">
 				        <input type="checkbox" name="flags" value="2" checked="checked"> 振动提醒
 				      </label>
 				      <label class="am-checkbox-inline">
-				        <input type="checkbox" name="flags" value="4" checked="checked"> 呼吸灯  
+				        <input type="checkbox" name="flags" value="4" checked="checked"> 呼吸灯 
 				      </label>
 				</div>
-				
+
 				<p>
 					<button type="submit" class="am-btn am-btn-primary submit">提交</button>
 				</p>

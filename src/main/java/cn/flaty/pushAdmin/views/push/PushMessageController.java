@@ -18,23 +18,23 @@ import cn.flaty.pushAdmin.views.BaseDataWrapper;
 @Controller
 @RequestMapping("/pushMessage")
 public class PushMessageController {
-	
+
 	private static Logger log = LoggerFactory.getLogger(PushMessageController.class);
 
 	@Autowired
 	private PushServiceProxy pushService;
-	
+
 	@RequestMapping("/new")
 	public String news(){
 		return "pushMessage/new";
 	}
-	
-	
-	
+
+
+
 	@RequestMapping("/create")
 	@ResponseBody
 	public BaseDataWrapper create(@Valid PushMessageFormBean msg){
 		log.info(msg.toString());
-		return pushService.sendTest(msg);
+		return pushService.push(msg);
 	}
 }

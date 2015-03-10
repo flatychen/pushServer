@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.entity.persitence.Client;
 
 //@Repository
 public class MysqlClientRepository implements ClientRepository {
@@ -21,9 +22,9 @@ public class MysqlClientRepository implements ClientRepository {
 	}
 
 	@Override
-	public List<ClientInfo> queryClients(ClientInfo c) {
+	public List<Client> queryClients(String appKey) {
 		String sql = " select   cid,updateTime from tb_client";
-		return jdbc.queryForBeanList(sql, ClientInfo.class, null);
+		return jdbc.queryForBeanList(sql, Client.class, null);
 	}
 
 	@Override
@@ -38,6 +39,12 @@ public class MysqlClientRepository implements ClientRepository {
 	public boolean updateClient(ClientInfo c) {
 		String sql = " update  tb_client set updateTime = ? where cid = ?";
 		return jdbc.saveORUpdate(sql, new Object[] { new Date().getTime(), c.getDid() }) == 1;
+	}
+
+	@Override
+	public Client getClient(String did) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
