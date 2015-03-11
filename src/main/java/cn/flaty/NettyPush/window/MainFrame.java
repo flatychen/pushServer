@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.flaty.NettyPush.services.PushService;
+import cn.flaty.NettyPush.core.PushService;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 
 public class MainFrame extends JFrame {

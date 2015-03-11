@@ -8,8 +8,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import cn.flaty.NettyPush.core.ClientDispacherService;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
-import cn.flaty.NettyPush.services.ClientDispacherService;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -3,8 +3,8 @@ package cn.flaty.NettyPush.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 
-import cn.flaty.NettyPush.services.ClientDispacherService;
-import cn.flaty.NettyPush.services.PushService;
+import cn.flaty.NettyPush.core.ClientDispacherService;
+import cn.flaty.NettyPush.core.PushService;
 
 
 public  class beanFactoryUtils {

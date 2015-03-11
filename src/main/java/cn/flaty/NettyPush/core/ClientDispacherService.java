@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.services;
+package cn.flaty.NettyPush.core;
 
 import java.util.Date;
 
@@ -46,20 +46,12 @@ public class ClientDispacherService extends ConnPoolService {
 	}
 
 	/**
-	 * 检测新连接，并保存
+	 * 新连接保存
 	 * 
 	 * @param conn
 	 * @param message
 	 */
 	private void validateAndSave(NettyConnection conn, String message) {
-		//ClientInfo client = FastJsonUtils.praseToObject(message, ClientInfo.class);
-		// 保存客户端信息
-		//super.saveClientInfo(client);
-		
-		// 开启客户端信息自动过期
-//		if(!super.isRefleshClient()){
-//			super.delexpireClients();
-//		}
 		ClientInfo client = new ClientInfo();
 		client.setCid(new Date()+"");
 		pool.set(client.getCid(), conn);
@@ -67,17 +59,5 @@ public class ClientDispacherService extends ConnPoolService {
 
 
 	
-	
-	/**
-	 * 
-	 * 维持心跳连接
-	 * @param conn
-	 * @param message
-	 */
-	private void keepAlive(NettyConnection conn, String message) {
-		//ClientInfo client = FastJsonUtils.praseToObject(message, ClientInfo.class);
-//		super.resetClientExpire(client);
-//		pool.touch(client.getCid());
-	}
 	
 }

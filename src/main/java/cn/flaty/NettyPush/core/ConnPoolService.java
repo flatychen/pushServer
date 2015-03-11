@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.services;
+package cn.flaty.NettyPush.core;
 
 import java.util.List;
 import java.util.Timer;
@@ -21,7 +21,6 @@ public abstract class ConnPoolService {
 
 	private  volatile boolean isRefleshClient = false;
 	
-	@Autowired
 	private ClientRepository clientInfoRepo;
 	
 	@Autowired

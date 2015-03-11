@@ -17,9 +17,9 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.flaty.NettyPush.core.ClientDispacherService;
 import cn.flaty.NettyPush.server.codec.push.DeserializeHandler;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
-import cn.flaty.NettyPush.services.ClientDispacherService;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 
 @Sharable
