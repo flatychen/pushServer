@@ -11,8 +11,8 @@
 
 ###master分支
 * 一个简单的netty tcp socket通信
-> java客户端详见 [基于nio的java客户端](https://github.com/flatychen/nettyPusherClient)
-> 
+> java客户端详见 [基于nio的java客户端](https://github.com/flatychen/nettyPusherClient)  
+
 ###web分支
 
 为区分报文类型在包体加上**4字节**，**因业务不同**，故放包体中 
