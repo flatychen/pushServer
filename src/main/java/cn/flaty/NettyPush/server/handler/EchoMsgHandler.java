@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.Executors;
 
-@Sharable
 public class EchoMsgHandler extends ChannelInboundHandlerAdapter {
 
 	public final int echoTimes = 20;

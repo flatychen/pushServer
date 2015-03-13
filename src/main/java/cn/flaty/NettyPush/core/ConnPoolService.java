@@ -15,9 +15,17 @@ import cn.flaty.NettyPush.utils.AssertUtils;
 
 
 
-@Service
+/**
+ * 
+ * 保存客户端信息，使用DB
+ * 
+ * @author flatychen
+ *
+ */
+//@Service
+
+@Deprecated
 public abstract class ConnPoolService {
-	
 
 	private  volatile boolean isRefleshClient = false;
 	

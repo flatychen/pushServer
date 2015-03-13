@@ -22,7 +22,6 @@ import java.net.InetSocketAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Sharable
 public class HttpDemoHandler extends ChannelInboundHandlerAdapter {
 
 	private Logger log = LoggerFactory.getLogger(HttpDemoHandler.class);

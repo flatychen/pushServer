@@ -2,6 +2,13 @@ package cn.flaty.NettyPush.base;
 
 import java.util.List;
 
+/**
+ * 
+ * 分页
+ * @author flatychen
+ *
+ * @param <T>
+ */
 public class PageBean<T> {
 	
 	public final int DEFAULT_PAGE_SIZE = 15;

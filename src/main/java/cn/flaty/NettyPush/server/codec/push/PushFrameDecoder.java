@@ -16,6 +16,12 @@ import cn.flaty.NettyPush.server.frame.SimplePushInFrame;
 import cn.flaty.NettyPush.utils.AssertUtils;
 import cn.flaty.NettyPush.utils.InetSocketUtils;
 
+/**
+ * 推送消息解包
+ * 
+ * @author flatychen
+ *
+ */
 public class PushFrameDecoder extends ByteToMessageDecoder {
 	
 	private Logger log  = LoggerFactory.getLogger(PushFrameDecoder.class);

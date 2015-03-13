@@ -2,6 +2,15 @@ package cn.flaty.NettyPush.server.frame;
 
 import cn.flaty.NettyPush.utils.ByteUtil;
 
+/**
+ * 简单TCP包 <br><br><br>
+ * <b>包头共8个字节</b> <br>
+ * |-4字节-|1字节|1字节|1字节|<br>
+ * |  长度   |编码  | 保留  |保留  |
+ * 
+ * @author flatychen
+ *
+ */
 public class SimplePushHead implements FrameHead {
 
 	public final int FRAME_LENGTH_BYTES = 4;

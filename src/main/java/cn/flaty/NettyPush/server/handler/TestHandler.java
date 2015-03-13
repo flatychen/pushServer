@@ -22,7 +22,6 @@ import cn.flaty.NettyPush.server.codec.push.DeserializeHandler;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 
-@Sharable
 public class TestHandler extends ChannelInboundHandlerAdapter {
 
 	private ClientDispacherService deserialize;

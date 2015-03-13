@@ -6,8 +6,11 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import cn.flaty.NettyPush.server.frame.FrameHead;
 
 /**
- * @author flaty
  * 
+ * 根据长度切包
+ * 
+ * @author flatychen
+ *
  */
 public class SplitFrameDecoder extends LengthFieldBasedFrameDecoder {
 
@@ -18,7 +21,6 @@ public class SplitFrameDecoder extends LengthFieldBasedFrameDecoder {
 
 	/* 
 	 * 防止内存拷贝
-	 * @see io.netty.handler.codec.LengthFieldBasedFrameDecoder#extractFrame(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, int, int)
 	 */
 	@Override
 	protected ByteBuf extractFrame(ChannelHandlerContext ctx, ByteBuf buffer,

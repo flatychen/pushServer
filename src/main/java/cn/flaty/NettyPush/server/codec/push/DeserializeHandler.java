@@ -1,20 +1,21 @@
 package cn.flaty.NettyPush.server.codec.push;
 
-import java.text.MessageFormat;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import cn.flaty.NettyPush.core.ClientDispacherService;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.SimpleChannelInboundHandler;
 
+/**
+ * 
+ * 接收包处理
+ * @author flatychen
+ *
+ */
 public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	
 	
@@ -31,8 +32,7 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg)
 			throws Exception {
-		log.info(String.valueOf(msg.length()));
-		log.info(msg);
+		log.info("receive packet[长度:{},内容:{}]",String.valueOf(msg.length()),msg);
 		NettyConnection conn = new NettyConnection(ctx);
 		deserialize.dispacher(conn, msg);
 	}
@@ -40,7 +40,7 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
-		log.error(MessageFormat.format("{0} {1}", ctx.channel().remoteAddress(),cause.getMessage()));
+		log.error("{} {}", ctx.channel().remoteAddress(),cause.getMessage());
 	}
 
 }

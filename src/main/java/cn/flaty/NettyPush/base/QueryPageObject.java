@@ -1,7 +1,7 @@
 package cn.flaty.NettyPush.base;
 
 /**
- * 
+ * 查询bean
  * @author flatychen
  * @date 2014-5-8
  */

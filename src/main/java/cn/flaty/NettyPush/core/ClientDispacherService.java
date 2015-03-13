@@ -10,7 +10,10 @@ import cn.flaty.NettyPush.model.ClientInfo;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 
 /**
- * @author Administrator
+ * 
+ * 报文分发逻辑处理，对收到的报文进行分发，如，心跳，签到，普通报文等
+ * 
+ * @author flatychen
  *
  */
 @Service

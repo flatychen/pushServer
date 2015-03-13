@@ -25,7 +25,7 @@ import cn.flaty.NettyPush.utils.RuntimeUtils;
 
 /**
  * 
- * 默认监听器
+ * 默认监听器,netty由此处启动
  * @author flaty
  *
  */
@@ -43,7 +43,7 @@ public class DefaultListener implements Listener{
 	public void start() {
 		// acceptor 线程，用于监听 相当于 bio accept,并分发至worker线程
 		EventLoopGroup acceptor = new NioEventLoopGroup(1);
-		// work线程，用于处理，取当前服务器 cpu 数量  * 2
+		// work线程，用于处理业务，取当前服务器 cpu 数量  * 2
 		EventLoopGroup worker = new NioEventLoopGroup(RuntimeUtils.getProcessors() * 2);
 		try {
 			// 启动器

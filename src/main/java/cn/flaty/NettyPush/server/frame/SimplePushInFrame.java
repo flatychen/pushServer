@@ -5,7 +5,7 @@ import cn.flaty.NettyPush.utils.CharsetUtil;
 
 /**
  *
- * 解码包
+ * 解包
  * @author flatychen
  *
  */
@@ -22,7 +22,6 @@ public class SimplePushInFrame {
 		super();
 		this.frameHead = frameHead;
 		this.init(frame);
-		this.frameHead = frameHead;
 	}
 
 

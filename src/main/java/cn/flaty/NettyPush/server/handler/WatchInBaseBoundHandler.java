@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import cn.flaty.NettyPush.utils.InetSocketUtils;
 
-@Sharable
 public class WatchInBaseBoundHandler extends ChannelInboundHandlerAdapter {
 
 	private Logger log = LoggerFactory.getLogger(WatchInBaseBoundHandler.class);

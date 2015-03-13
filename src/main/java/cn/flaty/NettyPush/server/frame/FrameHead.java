@@ -1,5 +1,11 @@
 package cn.flaty.NettyPush.server.frame;
 
+/**
+ * 
+ * 包头
+ * @author flatychen
+ *
+ */
 public interface  FrameHead {
 
 	public static enum charset {
@@ -29,7 +35,7 @@ public interface  FrameHead {
 
 
 	/**
-	 * 包头部所占字节
+	 * 包头部所占字节（去除包长度所占字节）
 	 * @return
 	 */
 	int headLength();

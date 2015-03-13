@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 
 
+/**
+ * 
+ * 消息推送、发送业务
+ * @author flatychen
+ *
+ */
 @Service
 public class PushService extends ConnPoolService{
 	
@@ -35,6 +41,11 @@ public class PushService extends ConnPoolService{
 	
 	
 	
+	/**
+	 * 发送给所有用户
+	 * @param msg
+	 * @author flatychen
+	 */
 	public void sendTest(String msg){
 		Map<String,NettyConnection> pools = pool.asMap();
 		Set<Map.Entry<String,NettyConnection>> sets =  pools.entrySet();

@@ -20,6 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.flaty.NettyPush.core.PushService;
 import cn.flaty.NettyPush.utils.beanFactoryUtils;
 
+/**
+ * 
+ * 简单窗口用于发送报文
+ * @author flatychen
+ *
+ */
 public class MainFrame extends JFrame {
 
 	

@@ -1,13 +1,17 @@
 package cn.flaty.NettyPush.server.codec.push;
 
-import java.util.Arrays;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import cn.flaty.NettyPush.server.frame.FrameHead;
 import cn.flaty.NettyPush.server.frame.SimplePushOutFrame;
 
+/**
+ * 
+ * 推送消息封包
+ * @author flatychen
+ *
+ */
 public class PushFrameEncoder extends MessageToByteEncoder<String> {
 
 	private FrameHead frameHead;

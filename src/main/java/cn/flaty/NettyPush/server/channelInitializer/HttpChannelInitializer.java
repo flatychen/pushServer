@@ -5,6 +5,12 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 
+/**
+ *
+ * HTTP channel 注册 
+ * @author flatychen
+ *
+ */
 public class HttpChannelInitializer extends  AbstractChannelInitializer{
 	
 	private static String HTTPDECODER = "httpDecoder";

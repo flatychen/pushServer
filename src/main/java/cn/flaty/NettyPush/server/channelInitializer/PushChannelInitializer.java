@@ -14,6 +14,12 @@ import cn.flaty.NettyPush.server.codec.push.PushFrameEncoder;
 import cn.flaty.NettyPush.server.codec.push.SplitFrameDecoder;
 import cn.flaty.NettyPush.server.frame.FrameHead;
 
+/**
+ * 
+ * 消息推送channel注册
+ * @author flatychen
+ *
+ */
 public class PushChannelInitializer extends  AbstractChannelInitializer{
 
 	
