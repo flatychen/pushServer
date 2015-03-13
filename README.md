@@ -1,5 +1,5 @@
 ###基础通信协议
-	                简单的基础的自定义通信协议       
+	                自定义通信协议       
  	  	   +-------+----+-----+----------------+     
 	bytes  |   4  |  1  | 3   |  ...           |
 	 	   +------+-----+-----+----------------+     
@@ -7,7 +7,9 @@
 	       +------+-----+------+---------------+ 
 ###master分支
 * 一个简单的netty tcp socket通信  
-> java客户端详见 [基于nio的java客户端](https://github.com/flatychen/nettyPusherClient)
+
+> java客户端详见 [基于nio的java客户端](https://github.com/flatychen/nettyPusherClient)  
+
 ###web分支
 *  实现简单的推送（android）  
 *  使用h2+guava进行连接管理
