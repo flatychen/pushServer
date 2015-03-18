@@ -63,6 +63,7 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 
 	@Override
 	public Map<String, NettyConnection> asMap() {
+		log.info("ConnpoolSize: {}",cache.size());
 		return cache.asMap();
 	}
 

@@ -50,7 +50,7 @@ public class DefaultListener implements Listener{
 			ServerBootstrap sbs = new ServerBootstrap();
 			sbs.group(acceptor, worker).channel(NioServerSocketChannel.class)
 //					.childOption(ChannelOption.SO_KEEPALIVE, true)
-//					.childOption(ChannelOption.TCP_NODELAY, true) 
+					.childOption(ChannelOption.TCP_NODELAY, true) 
 //					.childOption(ChannelOption.SO_REUSEADDR, true) 
 					.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT) // 使用内存池 回收堆外内存
 //					.childOption(ChannelOption.MESSAGE_SIZE_ESTIMATOR, new MessageSizeEstimator() {

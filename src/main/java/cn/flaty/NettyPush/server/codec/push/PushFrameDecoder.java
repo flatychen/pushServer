@@ -11,8 +11,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.flaty.NettyPush.server.frame.FrameHead;
-import cn.flaty.NettyPush.server.frame.SimplePushInFrame;
+import cn.flaty.NettyPush.server.protocol.FrameHead;
+import cn.flaty.NettyPush.server.protocol.SimplePushInFrame;
 import cn.flaty.NettyPush.utils.AssertUtils;
 import cn.flaty.NettyPush.utils.InetSocketUtils;
 

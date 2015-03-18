@@ -3,8 +3,8 @@ package cn.flaty.NettyPush.server.codec.push;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import cn.flaty.NettyPush.server.frame.FrameHead;
-import cn.flaty.NettyPush.server.frame.SimplePushOutFrame;
+import cn.flaty.NettyPush.server.protocol.FrameHead;
+import cn.flaty.NettyPush.server.protocol.SimplePushOutFrame;
 
 /**
  * 

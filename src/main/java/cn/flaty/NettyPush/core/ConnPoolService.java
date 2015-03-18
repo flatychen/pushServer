@@ -24,7 +24,6 @@ import cn.flaty.NettyPush.utils.AssertUtils;
  */
 //@Service
 
-@Deprecated
 public abstract class ConnPoolService {
 
 	private  volatile boolean isRefleshClient = false;

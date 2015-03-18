@@ -12,7 +12,7 @@ import cn.flaty.NettyPush.server.codec.push.MergeFrameEncoder;
 import cn.flaty.NettyPush.server.codec.push.PushFrameDecoder;
 import cn.flaty.NettyPush.server.codec.push.PushFrameEncoder;
 import cn.flaty.NettyPush.server.codec.push.SplitFrameDecoder;
-import cn.flaty.NettyPush.server.frame.FrameHead;
+import cn.flaty.NettyPush.server.protocol.FrameHead;
 
 /**
  * 
