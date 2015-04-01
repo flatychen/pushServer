@@ -1,6 +1,6 @@
 package cn.flaty.NettyPush.server.channelInitializer;
 
-import cn.flaty.NettyPush.server.handler.HttpDemoHandler;
+import cn.flaty.NettyPush.server.codec.sample.ShowMsgHandler;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
@@ -24,7 +24,7 @@ public class HttpChannelInitializer extends  AbstractChannelInitializer{
 	}
 	
 	private void addCustomChannel(ChannelPipeline pipeline) {
-		pipeline.addLast(new HttpDemoHandler());
+		pipeline.addLast(new ShowMsgHandler());
 		
 	}
 

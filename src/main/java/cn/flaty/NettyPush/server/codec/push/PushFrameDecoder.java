@@ -41,7 +41,7 @@ public class PushFrameDecoder extends ByteToMessageDecoder {
 		int bytesHaveRead = in.readableBytes();
 		if( bytesHaveRead == 0){
 			InetSocketAddress isa = (InetSocketAddress) ctx.channel().remoteAddress();
-			log.warn(MessageFormat.format("----> {0} 关闭 ", isa.toString()));
+			log.warn(MessageFormat.format("---->客户端 {0} 重置(rst) ", isa.toString()));
 			in.release();
 			return ;
 		}

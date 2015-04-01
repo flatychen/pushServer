@@ -17,21 +17,27 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 	
 	private Logger log = LoggerFactory.getLogger(GuavaConnPool.class);
 
-	private long accessTime = 30000;
+	private long accessTime = 1;
 
 	private LoadingCache<String, NettyConnection> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(accessTime, TimeUnit.SECONDS).removalListener(new RemovalListener<String, NettyConnection>() {
+			.expireAfterAccess(accessTime, TimeUnit.DAYS).removalListener(new RemovalListener<String, NettyConnection>() {
 				@Override
 				public void onRemoval(
 						RemovalNotification<String, NettyConnection> notification) {
-					log.info(notification.getKey()+"is removed ");
+					log.info(notification.getKey()+" is removed ");
 				}
 			})
 			.build(new CacheLoader<String, NettyConnection>(){
 				@Override
 				public NettyConnection load(String key) throws Exception {
-					log.info("---> loading a not exist key ### ");
-					return null;
+					NettyConnection conn = cache.get(key);
+					if(conn != null){
+						log.info("---> refresh key {} ",key);
+						return conn;
+					}else{
+						log.info("---> loading a not exist key {} ",key);
+						return null;
+					}
 				}
 				
 			});

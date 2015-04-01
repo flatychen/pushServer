@@ -58,11 +58,10 @@ public class ClientDispacherService extends ConnPoolService {
 	 * @param message
 	 */
 	private void validateAndSave(NettyConnection conn, String message) {
-		int _clients = clients.incrementAndGet();
-		log.info("连接总数： {}",_clients);
+		log.info("连接总数： {}",clients.incrementAndGet());
 		ClientInfo client = new ClientInfo();
 		client.setCid(new Date().getTime()+"");
-		pool.set(client.getCid(), conn);
+		//pool.set(client.getCid(), conn);
 	}
 
 
