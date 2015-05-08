@@ -56,7 +56,7 @@ public class ClientDispacherService extends ConnPoolService {
 	 */
 	private void validateAndSave(NettyConnection conn, String message) {
 		ClientInfo client = new ClientInfo();
-		client.setCid(new Date()+"");
+		client.setCid(new Date().getTime()+"");
 		pool.set(client.getCid(), conn);
 	}
 
