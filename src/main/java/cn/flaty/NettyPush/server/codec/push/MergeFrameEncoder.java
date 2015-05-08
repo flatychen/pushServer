@@ -1,7 +1,7 @@
 package cn.flaty.NettyPush.server.codec.push;
 
 import io.netty.handler.codec.LengthFieldPrepender;
-import cn.flaty.NettyPush.server.frame.FrameHead;
+import cn.flaty.NettyPush.server.protocol.FrameHead;
 
 /**
  * 

@@ -14,15 +14,22 @@
 		<property name="channelInitializer" ref="socketChannelInitializer" />
 	</bean>
 
-	<!-- <bean id="httpChannelInitializer" class="cn.flaty.NettyPush.server.channelInitializer.HttpChannelInitializer"> 
-		</bean> -->
+	<bean id="httpChannelInitializer"
+		class="cn.flaty.NettyPush.server.channelInitializer.HttpChannelInitializer">
+	</bean>
 
 	<bean id="socketChannelInitializer"
 		class="cn.flaty.NettyPush.server.channelInitializer.PushChannelInitializer">
-		<property name="frameHeader" ref="frameHeader" ></property>
+		<property name="frameHeader" ref="frameHeader"></property>
 	</bean>
 
-	<bean id="frameHeader"  class="cn.flaty.NettyPush.server.frame.SimplePushHead"></bean>
+
+	<bean id="sampleChannelInitializer"
+		class="cn.flaty.NettyPush.server.channelInitializer.SampleChannelInitializer">
+	</bean>
+
+
+	<bean id="frameHeader" class="cn.flaty.NettyPush.server.protocol.SimplePushHead"></bean>
 
 
 

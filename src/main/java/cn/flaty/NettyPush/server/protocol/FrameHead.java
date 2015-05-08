@@ -1,4 +1,4 @@
-package cn.flaty.NettyPush.server.frame;
+package cn.flaty.NettyPush.server.protocol;
 
 /**
  * 

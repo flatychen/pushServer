@@ -1,6 +1,5 @@
-package cn.flaty.NettyPush.server.handler;
+package cn.flaty.NettyPush.server.codec.sample;
 
-import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

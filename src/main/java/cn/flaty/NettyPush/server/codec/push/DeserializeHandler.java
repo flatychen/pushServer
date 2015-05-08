@@ -1,5 +1,7 @@
 package cn.flaty.NettyPush.server.codec.push;
 
+import java.net.InetSocketAddress;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -32,7 +34,8 @@ public class DeserializeHandler extends SimpleChannelInboundHandler<String> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg)
 			throws Exception {
-		log.info("receive packet[长度:{},内容:{}]",String.valueOf(msg.length()),msg);
+		InetSocketAddress isa = (InetSocketAddress) ctx.channel().remoteAddress();
+		log.info("receive packet[内容:{}] form {}",String.valueOf(msg.length()),isa.toString());
 		NettyConnection conn = new NettyConnection(ctx);
 		deserialize.dispacher(conn, msg);
 	}

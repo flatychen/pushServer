@@ -1,6 +1,7 @@
 package cn.flaty.NettyPush.core;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ import cn.flaty.NettyPush.server.conn.NettyConnection;
 public class ClientDispacherService extends ConnPoolService {
 
 	private static Logger log = LoggerFactory.getLogger(ClientDispacherService.class);
+	
+	private  AtomicInteger clients = new AtomicInteger(0);
 	
 
 	/**
@@ -55,6 +58,7 @@ public class ClientDispacherService extends ConnPoolService {
 	 * @param message
 	 */
 	private void validateAndSave(NettyConnection conn, String message) {
+		log.info("连接总数： {}",clients.incrementAndGet());
 		ClientInfo client = new ClientInfo();
 		client.setCid(new Date().getTime()+"");
 		pool.set(client.getCid(), conn);

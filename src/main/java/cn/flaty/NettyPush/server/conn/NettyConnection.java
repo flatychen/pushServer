@@ -1,6 +1,5 @@
 package cn.flaty.NettyPush.server.conn;
 
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import cn.flaty.NettyPush.utils.AssertUtils;

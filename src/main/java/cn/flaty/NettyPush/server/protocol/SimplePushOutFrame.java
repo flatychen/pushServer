@@ -1,8 +1,8 @@
-package cn.flaty.NettyPush.server.frame;
+package cn.flaty.NettyPush.server.protocol;
 
 import java.nio.charset.Charset;
 
-import cn.flaty.NettyPush.server.frame.FrameHead.charset;
+import cn.flaty.NettyPush.server.protocol.FrameHead.charset;
 import cn.flaty.NettyPush.utils.CharsetUtil;
 
 /**
