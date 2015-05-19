@@ -10,11 +10,11 @@
 
 
 	<jdbc:initialize-database data-source="dataSource">
-		<jdbc:script location="classpath:schema.sql" />
+		<jdbc:script location="classpath:sql/schema.sql" />
 	</jdbc:initialize-database>
 
 	<!-- DBCP 连接池 -->
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
@@ -30,16 +30,6 @@
 		<property name="removeAbandonedTimeout" value="180" />
 	</bean>
 
-
-	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-		<constructor-arg ref="dataSourceSpied" />
-		<property name="logFormatter">
-			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
-				<property name="loggingType" value="SINGLE_LINE" />
-				<property name="sqlPrefix" value="SQL:::" />
-			</bean>
-		</property>
-	</bean>
 
 
 	<!-- spring jdbc 模板类 -->

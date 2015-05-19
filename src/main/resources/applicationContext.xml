@@ -13,8 +13,10 @@
 	
 	
 
-	<import resource="applicationRescourse.xml" />
-	<import resource="applicationTask.xml" />
-	<import resource="applicationDataSource.xml" />
-	<import resource="applicationServer.xml" />
+	<import resource="spring/applicationRescourse.xml" />
+	<import resource="task/applicationTask.xml" />
+	<import resource="spring/applicationDataSource.xml" />
+	<import resource="spring/applicationServer.xml" />
+	
+	
 </beans>

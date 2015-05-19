@@ -15,28 +15,30 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
 
-public class GuavaConnPool implements NettyConnectionPool<String, NettyConnection> {
+public class GuavaConnPool implements
+		NettyConnectionPool<String, NettyConnection> {
 
 	private Logger log = LoggerFactory.getLogger(GuavaConnPool.class);
 
-
-	private LoadingCache<String, NettyConnection> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(ClientRepository.second_db_live, TimeUnit.MILLISECONDS).removalListener(new RemovalListener<String, NettyConnection>() {
+	private LoadingCache<String, NettyConnection> cache = CacheBuilder
+			.newBuilder()
+			.expireAfterAccess(ClientRepository.client_db_live_time,
+					TimeUnit.MILLISECONDS)
+			.removalListener(new RemovalListener<String, NettyConnection>() {
 				@Override
 				public void onRemoval(
 						RemovalNotification<String, NettyConnection> notification) {
-					log.info(notification.getKey()+"is removed ");
+					log.info(notification.getKey() + "is removed ");
 				}
-			})
-			.build(new CacheLoader<String, NettyConnection>(){
+			}).build(new CacheLoader<String, NettyConnection>() {
 				@Override
 				public NettyConnection load(String key) throws Exception {
 					NettyConnection conn = cache.get(key);
-					if(conn != null){
-						log.info("---> refresh key {} ",key);
+					if (conn != null) {
+						log.info("---> refresh key {} ", key);
 						return conn;
-					}else{
-						log.info("---> loading a not exist key {} ",key);
+					} else {
+						log.info("---> loading a not exist key {} ", key);
 						return null;
 					}
 				}
@@ -57,7 +59,7 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 			conn = cache.get(key);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			return conn;
 		}
 	}
@@ -72,7 +74,5 @@ public class GuavaConnPool implements NettyConnectionPool<String, NettyConnectio
 	public Map<String, NettyConnection> asMap() {
 		return cache.asMap();
 	}
-
-
 
 }

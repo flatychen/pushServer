@@ -14,8 +14,7 @@
 	</context:component-scan>
 
 	<context:property-placeholder
-		location="classpath:server.properties,classpath:jdbc.properties" />
-
+		location="classpath:config/server.properties,classpath:config/jdbc.properties" />
 
 
 </beans>

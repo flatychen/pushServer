@@ -14,13 +14,10 @@ import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.server.conn.NettyConnectionPool;
 import cn.flaty.NettyPush.utils.AssertUtils;
 
-
-
 @Service
 public abstract class ConnPoolService {
 
-
-	private  volatile boolean isRefleshing = false;
+	private volatile boolean isRefleshing = false;
 
 	@Autowired
 	private ClientRepository clientInfoRepo;
@@ -28,32 +25,29 @@ public abstract class ConnPoolService {
 	@Autowired
 	protected NettyConnectionPool<String, NettyConnection> pool;
 
-
-	protected List<Client> queryClients(ClientInfo client){
+	protected List<Client> queryClients(ClientInfo client) {
 		return clientInfoRepo.queryClients(client.getDid());
 	}
 
-
-	protected void saveClientInfo(ClientInfo client){
+	protected void saveClientInfo(ClientInfo client) {
 		AssertUtils.notNull(client);
 		AssertUtils.notNull(client.getDid());
 		Client c = this.getClient(client.getDid());
-		if(c == null){
+		if (c == null) {
 			clientInfoRepo.insertClient(client);
-		}else{
+		} else {
 			clientInfoRepo.updateClient(client);
 		}
 
 	}
 
-	protected void resetClientExpire(ClientInfo client){
+	protected void resetClientExpire(ClientInfo client) {
 		AssertUtils.notNull(client);
 		AssertUtils.notNull(client.getDid());
 		clientInfoRepo.updateClient(client);
 	}
 
-
-	protected void delExpireClientsOfDb(){
+	protected void delExpireClientsOfDb() {
 		this.isRefleshing = true;
 		Timer refleshClientInfo = new Timer("refleshClientInfo");
 		refleshClientInfo.schedule(new TimerTask() {
@@ -61,17 +55,15 @@ public abstract class ConnPoolService {
 			public void run() {
 				clientInfoRepo.delExpireClient();
 			}
-		}, 1024, ClientRepository.second_db_live);
+		}, 1024, ClientRepository.client_db_live_time);
 	}
 
-	protected Client getClient(String did){
+	protected Client getClient(String did) {
 		return clientInfoRepo.getClient(did);
 	}
 
 	protected boolean isRefleshClient() {
 		return isRefleshing;
 	}
-
-
 
 }

@@ -12,7 +12,7 @@ import cn.flaty.NettyPush.utils.FastJsonUtils;
 
 /**
  * @author Administrator
- *
+ * 
  */
 @Service
 public class ClientDispacherService extends ConnPoolService {
@@ -25,7 +25,7 @@ public class ClientDispacherService extends ConnPoolService {
 
 	/**
 	 * 客户端报文分发
-	 *
+	 * 
 	 * @param conn
 	 * @param msg
 	 */
@@ -36,7 +36,7 @@ public class ClientDispacherService extends ConnPoolService {
 		// 新连接
 		if (commond == GenericMessage.client_connected) {
 			this.validateAndSave(conn, m.getMessage());
-		// 心跳
+			// 心跳
 		} else if (commond == GenericMessage.client_heart) {
 			this.keepAliveOfDb(m.getMessage());
 		} else {
@@ -47,7 +47,7 @@ public class ClientDispacherService extends ConnPoolService {
 
 	/**
 	 * 检测新连接合法性，并保存
-	 *
+	 * 
 	 * @param conn
 	 * @param message
 	 */
@@ -63,14 +63,11 @@ public class ClientDispacherService extends ConnPoolService {
 		}
 
 		// 检查是否有消息需要发送
-		pushService.sendNewClient(client,conn);
+		pushService.sendNewClient(client, conn);
 
-
-		// 保存连接于连接池中和DB中
+		// 保存连接信息于本地连接池中和DB中
 		super.saveClientInfo(client);
 		pool.set(client.getDid(), conn);
-
-
 
 		// 自动刷新DB中数据
 		// this.startRefleshClientOfDb();
@@ -83,9 +80,9 @@ public class ClientDispacherService extends ConnPoolService {
 	}
 
 	/**
-	 *
+	 * 
 	 * 维持数据库客户端更新
-	 *
+	 * 
 	 * @param conn
 	 * @param message
 	 */
@@ -96,7 +93,6 @@ public class ClientDispacherService extends ConnPoolService {
 				ClientInfo.class);
 
 		System.out.println(pool.get(client.getDid()));
-		;
 
 		super.resetClientExpire(client);
 		pool.touch(client.getDid());

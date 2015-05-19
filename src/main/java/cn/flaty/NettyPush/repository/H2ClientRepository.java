@@ -17,35 +17,37 @@ public class H2ClientRepository implements ClientRepository {
 
 	@Override
 	public boolean insertClient(ClientInfo c) {
-		String sql = " insert into tb_client(appkey,did,updateTime) values(?,?,?)";
-		return jdbc.saveORUpdate(sql,
-				new Object[] { c.getAppKey(),c.getDid(), new Date().getTime() }) == 1;
+		// 设置过期时间
+		long expireTime = new Date(new Date().getTime()
+				+ ClientRepository.client_db_live_time).getTime();
+		String sql = " insert into tb_online_client(appkey,did,expireTime,appVer,os) values(?,?,?,?,?)";
+		return jdbc.saveORUpdate(sql, new Object[] { c.getAppKey(), c.getDid(),
+				expireTime, c.getAppVer(), c.getOs() }) == 1;
 	}
 
 	@Override
 	public List<Client> queryClients(String appKey) {
-		String sql = " select   appkey,did,updateTime from tb_client";
-		return jdbc.queryForBeanList(sql, Client.class, null);
+		String sql = " select   appkey,did,expireTime from tb_online_client where appkey = ? ";
+		return jdbc
+				.queryForBeanList(sql, Client.class, new Object[] { appKey });
 	}
 
 	@Override
 	public boolean delExpireClient() {
-		Date now = new Date();
-		Date d = new Date(now.getTime() - ClientRepository.second_db_live);
-		String sql = " delete from tb_client where updateTime <= ? ";
-		return jdbc.saveORUpdate(sql, new Object[] { d.getTime() }) >= 1;
+		String sql = " delete from tb_online_client where expireTime > ? ";
+		return jdbc.saveORUpdate(sql, new Object[] { new Date().getTime() }) >= 1;
 	}
 
 	@Override
 	public boolean updateClient(ClientInfo c) {
-		String sql = " update  tb_client set updateTime = ? where did = ?";
+		String sql = " update  tb_online_client set expireTime = ? where did = ?";
 		return jdbc.saveORUpdate(sql,
 				new Object[] { new Date().getTime(), c.getDid() }) == 1;
 	}
 
 	@Override
 	public Client getClient(String did) {
-		String sql = " select  appkey,did,updateTime from tb_client where did = ?";
+		String sql = " select  appkey,did,expireTime from tb_online_client where did = ?";
 		return jdbc.queryForBean(sql, Client.class, new Object[] { did });
 	}
 
