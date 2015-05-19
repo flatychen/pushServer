@@ -2,3 +2,5 @@
 /.settings/*
 *.class
 *.bak
+.classpath
+.project
