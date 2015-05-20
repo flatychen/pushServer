@@ -8,13 +8,14 @@
        ">
 
 
-	<bean id="taskExecutor"
+	<bean id="workExecutor"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-		<property name="corePoolSize" value="5" />
-		<property name="maxPoolSize" value="10" />
+		<property name="corePoolSize" value="8" />
+		<property name="maxPoolSize" value="16" />
 		<property name="keepAliveSeconds" value="300" />
-		<property name="threadNamePrefix" value="nettyListener-" />
+		<property name="threadNamePrefix" value="pushWork-" />
 	</bean>
+
 
 
 </beans>

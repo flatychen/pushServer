@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
 import cn.flaty.NettyPush.entity.persitence.Client;
 
 //@Repository
@@ -14,7 +14,7 @@ public class MysqlClientRepository implements ClientRepository {
 	private JdbcTemplateWrapper jdbc;
 
 	@Override
-	public boolean insertClient(ClientInfo c) {
+	public boolean insertClient(ClientPacket c) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -32,7 +32,7 @@ public class MysqlClientRepository implements ClientRepository {
 	}
 
 	@Override
-	public boolean updateClient(ClientInfo c) {
+	public boolean updateClient(ClientPacket c) {
 		// TODO Auto-generated method stub
 		return false;
 	}

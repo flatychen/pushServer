@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
 import cn.flaty.NettyPush.entity.persitence.Client;
 import cn.flaty.NettyPush.repository.JdbcTemplateWrapper;
 import cn.flaty.pushAdmin.entity.ClientMessage;
-import cn.flaty.pushAdmin.entity.Message;
+import cn.flaty.pushAdmin.entity.SurviveMessage;
 
 @Repository
 public class H2ClientMessageRepository implements ClientMessageRepository {
@@ -19,7 +19,7 @@ public class H2ClientMessageRepository implements ClientMessageRepository {
 	private JdbcTemplateWrapper jdbc;
 
 	@Override
-	public boolean insertMessage(Message m) {
+	public boolean insertMessage(SurviveMessage m) {
 		String sql = " insert into tb_message(appkey,msgId, title ,content, flag , pushActionMixin ,createTime,expireTime) values(?,?,?,?,?,?,?,?)";
 		return jdbc.saveORUpdate(
 				sql,
@@ -30,9 +30,9 @@ public class H2ClientMessageRepository implements ClientMessageRepository {
 	}
 
 	@Override
-	public List<Message> queryClientMessage(ClientInfo clientInfo) {
+	public List<SurviveMessage> queryClientMessage(ClientPacket clientInfo) {
 		String sql = " select appkey,msgId, title ,content, flag , pushActionMixin ,createTime,expireTime  from  tb_message a where a.appkey = ? and a.expireTime >= ? and not exists ( select  * from tb_client_message b where a.msgid = b.msgid )";
-		return jdbc.queryForBeanList(sql, Message.class, new Object[] {
+		return jdbc.queryForBeanList(sql, SurviveMessage.class, new Object[] {
 				clientInfo.getAppKey(), new Date().getTime() });
 	}
 

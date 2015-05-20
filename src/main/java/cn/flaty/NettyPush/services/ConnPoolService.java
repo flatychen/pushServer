@@ -7,7 +7,7 @@ import java.util.TimerTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
 import cn.flaty.NettyPush.entity.persitence.Client;
 import cn.flaty.NettyPush.repository.ClientRepository;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
@@ -25,11 +25,11 @@ public abstract class ConnPoolService {
 	@Autowired
 	protected NettyConnectionPool<String, NettyConnection> pool;
 
-	protected List<Client> queryClients(ClientInfo client) {
+	protected List<Client> queryClients(ClientPacket client) {
 		return clientInfoRepo.queryClients(client.getDid());
 	}
 
-	protected void saveClientInfo(ClientInfo client) {
+	protected void saveClientInfo(ClientPacket client) {
 		AssertUtils.notNull(client);
 		AssertUtils.notNull(client.getDid());
 		Client c = this.getClient(client.getDid());
@@ -41,7 +41,7 @@ public abstract class ConnPoolService {
 
 	}
 
-	protected void resetClientExpire(ClientInfo client) {
+	protected void resetClientExpire(ClientPacket client) {
 		AssertUtils.notNull(client);
 		AssertUtils.notNull(client.getDid());
 		clientInfoRepo.updateClient(client);

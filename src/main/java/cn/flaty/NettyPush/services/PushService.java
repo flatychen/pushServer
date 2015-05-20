@@ -12,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.entity.ClientInfo;
-import cn.flaty.NettyPush.entity.GenericMessage;
-import cn.flaty.NettyPush.entity.PushMessage;
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
+import cn.flaty.NettyPush.entity.packet.GenericPacket;
 import cn.flaty.NettyPush.entity.persitence.Client;
 import cn.flaty.NettyPush.server.conn.NettyConnection;
 import cn.flaty.NettyPush.utils.FastJsonUtils;
 import cn.flaty.pushAdmin.entity.ClientMessage;
-import cn.flaty.pushAdmin.entity.Message;
+import cn.flaty.pushAdmin.entity.SurviveMessage;
+import cn.flaty.pushAdmin.entity.PushTextPacket;
 import cn.flaty.pushAdmin.repository.ClientMessageRepository;
 
 @Service
@@ -39,12 +39,12 @@ public class PushService extends ConnPoolService {
 	 * 
 	 * @param msg
 	 */
-	public void sendOnLineClient(PushMessage pm) {
+	public void sendOnLineClient(PushTextPacket pm) {
 
 		Long msgId = this.saveMessage(pm);
 
 		List<Client> clients = Collections.unmodifiableList(super
-				.queryClients(new ClientInfo()));
+				.queryClients(new ClientPacket()));
 		NettyConnection conn = null;
 		for (Client clientInfo : clients) {
 			try {
@@ -61,8 +61,8 @@ public class PushService extends ConnPoolService {
 	}
 
 	private void send(NettyConnection conn, Long msgId, String did,
-			PushMessage pm) throws Exception {
-		String _msg = (GenericMessage.server_push_text)
+			PushTextPacket pm) throws Exception {
+		String _msg = (GenericPacket.server_push_text)
 				+ FastJsonUtils.toJsonString(pm);
 		conn.writeAndFlush(_msg);
 		ClientMessage cm = new ClientMessage();
@@ -81,18 +81,20 @@ public class PushService extends ConnPoolService {
 	 * @return
 	 * @author flatychen
 	 */
-	private Long saveMessage(PushMessage pushMessage) {
-		Message message = new Message();
+	private Long saveMessage(PushTextPacket pushMessage) {
+		SurviveMessage message = new SurviveMessage();
 		try {
 			PropertyUtils.copyProperties(message, pushMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		// 构造推送消息
 		Date now = new Date();
 		message.setAppkey("mypushTest");
 		message.setExpireTime(DateUtils.addHours(now, 1).getTime());
 		message.setMsgId(now.getTime());
+
 		clientMessageRepository.insertMessage(message);
 		return now.getTime();
 	}
@@ -105,10 +107,10 @@ public class PushService extends ConnPoolService {
 	 * @param conn
 	 * @author flatychen
 	 */
-	public void sendNewClient(final ClientInfo client,
+	public void sendNewClient(final ClientPacket client,
 			final NettyConnection conn) {
 
-		final List<Message> messages = Collections
+		final List<SurviveMessage> messages = Collections
 				.unmodifiableList(clientMessageRepository
 						.queryClientMessage(client));
 
@@ -116,8 +118,8 @@ public class PushService extends ConnPoolService {
 			task.submit(new Runnable() {
 				@Override
 				public void run() {
-					for (Message message : messages) {
-						PushMessage pm = new PushMessage();
+					for (SurviveMessage message : messages) {
+						PushTextPacket pm = new PushTextPacket();
 						try {
 							PropertyUtils.copyProperties(pm, message);
 							send(conn, message.getMsgId(), client.getDid(), pm);

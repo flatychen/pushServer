@@ -1,7 +1,12 @@
-package cn.flaty.NettyPush.entity;
+package cn.flaty.NettyPush.entity.packet;
 
-
-public class ClientInfo {
+/**
+ * 客户端信息
+ * 
+ * @author flatychen
+ * 
+ */
+public class ClientPacket {
 
 	private String appKey;
 
@@ -42,6 +47,5 @@ public class ClientInfo {
 	public void setOs(String os) {
 		this.os = os;
 	}
-
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.flaty.NettyPush.entity.ClientInfo;
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
 import cn.flaty.NettyPush.entity.persitence.Client;
 
 @Repository
@@ -16,7 +16,7 @@ public class H2ClientRepository implements ClientRepository {
 	private JdbcTemplateWrapper jdbc;
 
 	@Override
-	public boolean insertClient(ClientInfo c) {
+	public boolean insertClient(ClientPacket c) {
 		// 设置过期时间
 		long expireTime = new Date(new Date().getTime()
 				+ ClientRepository.client_db_live_time).getTime();
@@ -39,7 +39,7 @@ public class H2ClientRepository implements ClientRepository {
 	}
 
 	@Override
-	public boolean updateClient(ClientInfo c) {
+	public boolean updateClient(ClientPacket c) {
 		String sql = " update  tb_online_client set expireTime = ? where did = ?";
 		return jdbc.saveORUpdate(sql,
 				new Object[] { new Date().getTime(), c.getDid() }) == 1;
