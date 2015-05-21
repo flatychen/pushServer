@@ -6,7 +6,10 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import cn.flaty.NettyPush.server.frame.FrameHead;
 
 /**
- * @author flaty
+ * 
+ * 使用netty 自带进行 切包,粘包
+ * 
+ * @author flatychen
  * 
  */
 public class SplitFrameDecoder extends LengthFieldBasedFrameDecoder {
@@ -16,15 +19,15 @@ public class SplitFrameDecoder extends LengthFieldBasedFrameDecoder {
 				.headLength(), frameHead.byteLength());
 	}
 
-	/* 
-	 * 防止内存拷贝
-	 * @see io.netty.handler.codec.LengthFieldBasedFrameDecoder#extractFrame(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, int, int)
+	/*
+	 * 直接切除包头长度字节.防止内存拷贝
 	 */
 	@Override
 	protected ByteBuf extractFrame(ChannelHandlerContext ctx, ByteBuf buffer,
 			int index, int length) {
 		// 增加一次引用计数
 		buffer.retain();
+		// 切聊包头长度字节
 		return buffer.slice(index, length);
 	}
 }

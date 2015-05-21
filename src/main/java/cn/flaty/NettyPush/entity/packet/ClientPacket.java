@@ -1,5 +1,7 @@
 package cn.flaty.NettyPush.entity.packet;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  * 客户端信息
  * 
@@ -46,6 +48,27 @@ public class ClientPacket {
 
 	public void setOs(String os) {
 		this.os = os;
+	}
+
+	/**
+	 * 得到APP连接唯一码
+	 * 
+	 * @return
+	 * @author flatychen
+	 */
+	public String getAppClientUID() {
+		return DigestUtils.md5(this.appKey + ":" + this.did).toString();
+	}
+
+	/**
+	 * 组装成redis hash field
+	 * 
+	 * @return
+	 * @author flatychen
+	 */
+	public String getRedisField() {
+		return new StringBuilder().append(this.did).append(":").append(this.os)
+				.append(":").append(this.appVer).toString();
 	}
 
 }

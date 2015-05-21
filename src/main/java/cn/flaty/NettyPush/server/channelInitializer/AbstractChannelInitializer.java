@@ -5,6 +5,15 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 
+/**
+ * 
+ * 抽像ChannelInitializer <br>
+ * 
+ * 用于组织不同的channel
+ * 
+ * @author flatychen
+ * 
+ */
 public abstract class AbstractChannelInitializer extends ChannelInitializer {
 
 	private ChannelHandler[] inHandlers;
@@ -27,7 +36,7 @@ public abstract class AbstractChannelInitializer extends ChannelInitializer {
 		}
 		this.initPipeline(pipeline);
 		if (outHandlers != null) {
-			//pipeline.addl(outHandlers);
+			// pipeline.addl(outHandlers);
 		}
 
 	}

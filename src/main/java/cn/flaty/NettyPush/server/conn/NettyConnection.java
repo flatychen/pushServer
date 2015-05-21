@@ -4,6 +4,13 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import cn.flaty.NettyPush.utils.AssertUtils;
 
+/**
+ * 
+ * TCP 连接
+ * 
+ * @author flatychen
+ * 
+ */
 public class NettyConnection {
 
 	private ChannelHandlerContext context;
