@@ -9,6 +9,18 @@ import cn.flaty.NettyPush.entity.packet.ClientPacket;
 
 /**
  * 
+ * <pre>
+ * did -> 设备ID
+ * appkey -> app唯一标识码
+ * appClientUId = md5(appKey+did)    
+ * 
+ * client:[id] -> [appClientUId]  **[String]**  **expire[x second]** 
+ * [appkey] -> id  **[set]**
+ * [appkey]:[os] -> id         **[set]** 
+ * [appkey]:[appVer] -> id     **[set]**
+ * [appkey]:[label] -> id         **[set]**
+ * </pre>
+ * 
  * 
  * @author flatychen
  * 
@@ -28,14 +40,12 @@ public class RedisClientRepository {
 
 	/**
 	 * 
-	 * 客户端列表 clients:[appkey] -> [did]:[os]:[version]:[label] -> [AppClientUID] <br>
-	 * 客户端自动刷新 client:[AppClientUID] -> 1
 	 * 
 	 * @param client
 	 * @return
 	 * @author flatychen
 	 */
-	public void setClientKey(ClientPacket client) {
+	public void saveClient(ClientPacket client) {
 		jedisTemplate.hset(clientsKeyPrefix + client.getAppKey(),
 				client.getRedisField(), client.getAppClientUID());
 		jedisTemplate.setex(clientKeyPrefix + client.getAppClientUID(), "1",
@@ -44,7 +54,6 @@ public class RedisClientRepository {
 
 	/**
 	 * 
-	 * 客户端自动刷新 client:[AppClientUID] -> 1
 	 * 
 	 * @param client
 	 * @return
