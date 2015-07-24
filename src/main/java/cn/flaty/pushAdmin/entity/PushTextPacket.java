@@ -1,15 +1,19 @@
-package cn.flaty.NettyPush.entity;
+package cn.flaty.pushAdmin.entity;
 
+/**
+ * 推送文本消息报文
+ * 
+ * @author flatychen
+ * 
+ */
+public class PushTextPacket {
 
-
-public class PushMessage {
-	
 	private String title;
-	
+
 	private String content;
 
 	private int flag;
-	
+
 	private String pushActionMixin;
 
 	public String getPushActionMixin() {
@@ -43,8 +47,5 @@ public class PushMessage {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-
-	
-	
 
 }

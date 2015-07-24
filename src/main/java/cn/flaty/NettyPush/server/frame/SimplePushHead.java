@@ -2,6 +2,14 @@ package cn.flaty.NettyPush.server.frame;
 
 import cn.flaty.NettyPush.utils.ByteUtil;
 
+/**
+ * 
+ * 简单推送包头定义<br>
+ * 4字节长度, 4字节包头
+ * 
+ * @author flatychen
+ * 
+ */
 public class SimplePushHead implements FrameHead {
 
 	public final int FRAME_LENGTH_BYTES = 4;

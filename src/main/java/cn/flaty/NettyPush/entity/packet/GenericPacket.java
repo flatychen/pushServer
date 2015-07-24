@@ -1,10 +1,15 @@
-package cn.flaty.NettyPush.entity;
+package cn.flaty.NettyPush.entity.packet;
 
-public class GenericMessage {
+/**
+ * 
+ * 消息报文基础bean
+ * 
+ * @author flatychen
+ * 
+ */
+public class GenericPacket {
 
 	public static int server_push_text = 1024;
-
-	public static int server_push_image = 1025;
 
 	public static int client_heart = 4096;
 
@@ -18,7 +23,7 @@ public class GenericMessage {
 		return commond;
 	}
 
-	public GenericMessage(String message) {
+	public GenericPacket(String message) {
 		super();
 		this.commond = Integer.parseInt(new String(message.substring(0, 4)));
 		this.message = message.substring(4, message.length());

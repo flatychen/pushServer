@@ -1,8 +1,8 @@
 package cn.flaty.NettyPush.entity.persitence;
 
-public class Client {
+import cn.flaty.NettyPush.entity.packet.ClientPacket;
 
-	private String did;
+public class Client extends ClientPacket {
 
 	private long expireTime;
 
@@ -12,14 +12,6 @@ public class Client {
 
 	public void setUpdateTime(long expireTime) {
 		this.expireTime = expireTime;
-	}
-
-	public String getDid() {
-		return did;
-	}
-
-	public void setDid(String did) {
-		this.did = did;
 	}
 
 }

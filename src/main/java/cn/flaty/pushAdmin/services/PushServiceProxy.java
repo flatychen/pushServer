@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.flaty.NettyPush.entity.PushMessage;
 import cn.flaty.NettyPush.services.PushService;
+import cn.flaty.pushAdmin.entity.PushTextPacket;
 import cn.flaty.pushAdmin.views.BaseDataWrapper;
-import cn.flaty.pushAdmin.views.push.PushMessageFormBean;
+import cn.flaty.pushAdmin.views.push.PushMessageForm;
 
 @Service
 public class PushServiceProxy {
@@ -24,10 +24,10 @@ public class PushServiceProxy {
 	 * @param pushMessageBean
 	 * @return
 	 */
-	public BaseDataWrapper push(PushMessageFormBean pushMessageBean) {
+	public BaseDataWrapper push(PushMessageForm pushMessageBean) {
 
 		BaseDataWrapper json = new BaseDataWrapper();
-		PushMessage pushMessage = null;
+		PushTextPacket pushMessage = null;
 
 		// 消息序列化
 		try {

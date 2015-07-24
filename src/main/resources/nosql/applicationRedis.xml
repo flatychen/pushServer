@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       ">
+
+	<!-- redis配置 -->
+	<bean name="jedisTemplate" class="cn.flaty.NettyPush.nosql.JedisTemplate">
+		<constructor-arg name="jedisPool" ref="jedisPool"></constructor-arg>
+	</bean>
+
+	<!-- redis server -->
+	<bean name="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="poolConfig" ref="poolConfig"></constructor-arg>
+		<constructor-arg name="host" value="10.10.10.20"></constructor-arg>
+		<constructor-arg name="port" value="6379"></constructor-arg>
+		<constructor-arg name="timeout" value="10000"></constructor-arg>
+	</bean>
+
+	<!-- jedis 连接池 -->
+	<bean name="poolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+	 	<property name="maxTotal" value="10"></property>
+		<property name="maxIdle" value="10"></property> 
+		<property name="timeBetweenEvictionRunsMillis" value="360000"></property>
+		<property name="MaxWaitMillis" value="60000"></property>
+	</bean>
+
+</beans>

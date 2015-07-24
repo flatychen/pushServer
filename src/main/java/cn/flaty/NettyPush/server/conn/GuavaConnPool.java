@@ -15,6 +15,13 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
 
+/**
+ * 
+ * 使用guava 存储tcp本地连接
+ * 
+ * @author flatychen
+ * 
+ */
 public class GuavaConnPool implements
 		NettyConnectionPool<String, NettyConnection> {
 

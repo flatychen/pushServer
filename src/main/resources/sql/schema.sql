@@ -10,7 +10,6 @@ expireTime  BIGINT
 -- 未过期消息表,幸存表
 create table  tb_survive_msg(
 appkey VARCHAR(100),
---clientPushMsg
 minAppVer VARCHAR(20),
 minOs VARCHAR(20),
 createTime  BIGINT,
@@ -22,7 +21,7 @@ create table  tb_msg_log(
 appkey VARCHAR(100),
 msgId BIGINT,
 title VARCHAR(60),
-content VARCHAR(400),
+content VARCHAR(900),
 flag int,
 pushActionMixin VARCHAR(200),
 createTime  BIGINT,
