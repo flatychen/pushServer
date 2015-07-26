@@ -31,14 +31,15 @@ public class MysqlClientRepository implements ClientRepository {
 		return null;
 	}
 
+
 	@Override
-	public boolean updateClient(ClientPacket c) {
+	public boolean delExpireClient() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delExpireClient() {
+	public boolean touchClient(ClientPacket c) {
 		// TODO Auto-generated method stub
 		return false;
 	}

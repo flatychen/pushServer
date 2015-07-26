@@ -1,3 +1,9 @@
+drop table if exists tb_online_client;
+drop table if exists tb_sended_msg;
+drop table if exists tb_message;
+
+
+
 -- 在线用户表
 create table  tb_online_client(
 appkey VARCHAR(100),
@@ -7,17 +13,15 @@ os VARCHAR(20),
 expireTime  BIGINT
 );
 
--- 未过期消息表,幸存表
-create table  tb_survive_msg(
+-- 已发送消息表
+create table  tb_sended_msg(
 appkey VARCHAR(100),
-minAppVer VARCHAR(20),
-minOs VARCHAR(20),
-createTime  BIGINT,
-expireTime BIGINT
+did VARCHAR(100),
+msgId BIGINT
 );
 
 -- 消息日志表
-create table  tb_msg_log(
+create table  tb_message(
 appkey VARCHAR(100),
 msgId BIGINT,
 title VARCHAR(60),

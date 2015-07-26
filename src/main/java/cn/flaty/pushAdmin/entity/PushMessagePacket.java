@@ -1,12 +1,22 @@
 package cn.flaty.pushAdmin.entity;
 
+import cn.flaty.NettyPush.entity.persitence.Client;
+
 /**
  * 推送文本消息报文
  * 
  * @author flatychen
  * 
  */
-public class PushTextPacket {
+public class PushMessagePacket {
+
+
+	@Override
+	public String toString() {
+		return "PushMessagePacket [title=" + title + ", content=" + content
+				+ ", flag=" + flag + ", pushActionMixin=" + pushActionMixin
+				+ "]";
+	}
 
 	private String title;
 
@@ -48,4 +58,6 @@ public class PushTextPacket {
 		this.flag = flag;
 	}
 
+	
+	
 }

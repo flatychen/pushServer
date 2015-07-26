@@ -10,7 +10,7 @@ import cn.flaty.NettyPush.entity.persitence.Client;
 public interface ClientRepository {
 
 	@SuppressWarnings("deprecation")
-	public static long client_db_live_time = DateUtils.MILLIS_IN_SECOND * 30;
+	public static long client_db_live_time = DateUtils.MILLIS_IN_SECOND * 40;
 
 	public boolean insertClient(ClientPacket c);
 
@@ -18,7 +18,7 @@ public interface ClientRepository {
 
 	public List<Client> queryClients(String appKey);
 
-	public boolean updateClient(ClientPacket c);
+	public boolean touchClient(ClientPacket c);
 
 	public boolean delExpireClient();
 

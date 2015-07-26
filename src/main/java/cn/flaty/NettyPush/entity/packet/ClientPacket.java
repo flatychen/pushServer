@@ -10,6 +10,12 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class ClientPacket {
 
+	@Override
+	public String toString() {
+		return "ClientPacket [appKey=" + appKey + ", did=" + did + ", appVer="
+				+ appVer + ", os=" + os + "]";
+	}
+
 	private String appKey;
 
 	private String did;

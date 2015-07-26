@@ -21,7 +21,7 @@ public class StartServer {
 	/**
 	 * 工程名称
 	 */
-	private static String projectName = "appm";
+	private static String projectName = "push";
 
 	/**
 	 * 
@@ -30,8 +30,8 @@ public class StartServer {
 
 	public static void main(String[] args) {
 
-		// 设定Spring的profile
-		// Profiles.setProfileAsSystemProperty(Profiles.DEVELOPMENT);
+//		 设定Spring的profile
+		 Profiles.setProfileAsSystemProperty(Profiles.DEVELOPMENT);
 
 		JettyServer server = new JettyServer(projectName, port);
 		try {

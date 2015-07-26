@@ -20,53 +20,24 @@ package cn.flaty.pushAdmin.entity;
 	</code>
  * 
  */
-public class MessageLog {
+public class Message extends PushMessagePacket {
 
 	private String appKey;
 
-	private String title;
-
-	private String content;
-
-	private int flag;
-
-	private String pushActionMixin;
+	private long msgId;
 
 	private long createTime;
 
 	private long expireTime;
 
-	public String getPushActionMixin() {
-		return pushActionMixin;
+	public long getMsgId() {
+		return msgId;
 	}
 
-	public void setPushActionMixin(String pushActionMixin) {
-		this.pushActionMixin = pushActionMixin;
+	public void setMsgId(long msgId) {
+		this.msgId = msgId;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}
 
 	public String getAppKey() {
 		return appKey;

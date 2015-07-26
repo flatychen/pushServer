@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.flaty.NettyPush.entity.persitence.Client;
 import cn.flaty.pushAdmin.services.PushServiceProxy;
 import cn.flaty.pushAdmin.views.BaseDataWrapper;
 
@@ -30,7 +31,12 @@ public class PushMessageController {
 	@RequestMapping("/create")
 	@ResponseBody
 	public BaseDataWrapper create(@Valid PushMessageForm msg) {
-		log.info(msg.toString());
+		
+		// 手动设定过滤信息
+		Client clientsParams = new Client();
+		clientsParams.setAppKey("apptest");
+		
+		msg.setClient(clientsParams);
 		return pushServiceProxy.push(msg);
 	}
 }

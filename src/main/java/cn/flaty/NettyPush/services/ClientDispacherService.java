@@ -67,11 +67,19 @@ public class ClientDispacherService extends ConnPoolService {
 		// 检查是否有消息需要发送
 		pushService.sendForNewClient(client, conn);
 
-		// 保存连接信息于本地连接池
+		// 保存连接信息于本地连接池中和DB中
+		super.saveClientInfo(client);
 		pool.set(client.getDid(), conn);
 
-		// 保存连接信息于redis中
+		// 自动刷新DB中客户端数据
+		 this.startRefleshClientOfDb();
 
+	}
+
+	private void startRefleshClientOfDb() {
+		if (!super.isRefleshClient()) {
+			super.delExpireClientsOfDb();
+		}
 	}
 
 	/**
@@ -84,10 +92,12 @@ public class ClientDispacherService extends ConnPoolService {
 	private void keepAliveOfClient(String message) {
 
 		log.info("heartBeat:{}", message);
+		
 		ClientPacket client = FastJsonUtils.praseToObject(message,
 				ClientPacket.class);
 
 		pool.touch(client.getDid());
+		resetClientExpire(client);
 	}
 
 }

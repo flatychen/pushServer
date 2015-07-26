@@ -9,7 +9,7 @@
        ">
 
 
-	<jdbc:initialize-database data-source="dataSource">
+	<jdbc:initialize-database data-source="dataSource"  ignore-failures="ALL">
 		<jdbc:script location="classpath:sql/schema.sql" />
 	</jdbc:initialize-database>
 

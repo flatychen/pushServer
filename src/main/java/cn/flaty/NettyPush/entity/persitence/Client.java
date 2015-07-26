@@ -6,12 +6,13 @@ public class Client extends ClientPacket {
 
 	private long expireTime;
 
-	public long getUpdateTime() {
+	public long getExpireTime() {
 		return expireTime;
 	}
 
-	public void setUpdateTime(long expireTime) {
+	public void setExpireTime(long expireTime) {
 		this.expireTime = expireTime;
 	}
+
 
 }

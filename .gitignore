@@ -1,4 +1,8 @@
 /target
 /.settings/*
+logs/*
+.classpath
+.project
+*.db
 *.class
 *.bak

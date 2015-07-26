@@ -32,7 +32,7 @@ public class RedisClientRepository {
 	private static String clientsKeyPrefix = "clients:";
 	private static String clientKeyPrefix = "client:";
 
-	@Autowired
+//	@Autowired
 	private JedisTemplate jedisTemplate;
 
 	private static Logger logger = LoggerFactory

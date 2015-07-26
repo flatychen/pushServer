@@ -1,11 +1,13 @@
 package cn.flaty.pushAdmin.views.push;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import cn.flaty.pushAdmin.entity.PushTextPacket;
+import cn.flaty.NettyPush.entity.persitence.Client;
+import cn.flaty.pushAdmin.entity.PushMessagePacket;
 
 /**
  * 
@@ -15,6 +17,8 @@ import cn.flaty.pushAdmin.entity.PushTextPacket;
  * 
  */
 public class PushMessageForm {
+
+	private Client client;
 
 	/**
 	 * 标题
@@ -38,6 +42,14 @@ public class PushMessageForm {
 	private String openActivity;
 
 	private Date expireDate;
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 	public Date getExpireDate() {
 		return expireDate;
@@ -99,8 +111,8 @@ public class PushMessageForm {
 		this.content = content;
 	}
 
-	public PushTextPacket parsePushMessage() {
-		PushTextPacket pm = new PushTextPacket();
+	public PushMessagePacket parsePushMessage() {
+		PushMessagePacket pm = new PushMessagePacket();
 
 		for (int i = 0; i < this.flags.length; i++) {
 			pm.setFlag(pm.getFlag() | this.flags[i]);

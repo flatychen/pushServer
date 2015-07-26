@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.flaty.NettyPush.services.PushService;
-import cn.flaty.pushAdmin.entity.PushTextPacket;
+import cn.flaty.pushAdmin.entity.PushMessagePacket;
 import cn.flaty.pushAdmin.views.BaseDataWrapper;
 import cn.flaty.pushAdmin.views.push.PushMessageForm;
 
@@ -25,9 +25,9 @@ public class PushServiceProxy {
 	 * @return
 	 */
 	public BaseDataWrapper push(PushMessageForm pushMessageBean) {
-
+		log.info("pushMessage: {}",pushMessageBean.toString());
 		BaseDataWrapper json = new BaseDataWrapper();
-		PushTextPacket pushMessage = null;
+		PushMessagePacket pushMessage = null;
 
 		// 消息序列化
 		try {
@@ -41,7 +41,7 @@ public class PushServiceProxy {
 
 		// 推送消息
 		try {
-			pushService.sendOnLineClient(pushMessage);
+			pushService.sendOnLineClient(pushMessageBean.getClient(),pushMessage);
 		} catch (Exception e) {
 			json.setSuccess(false);
 			return json;

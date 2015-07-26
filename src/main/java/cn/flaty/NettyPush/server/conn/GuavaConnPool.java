@@ -35,7 +35,7 @@ public class GuavaConnPool implements
 				@Override
 				public void onRemoval(
 						RemovalNotification<String, NettyConnection> notification) {
-					log.info(notification.getKey() + "is removed ");
+					log.debug(notification.getKey() + " is removed ");
 				}
 			}).build(new CacheLoader<String, NettyConnection>() {
 				@Override

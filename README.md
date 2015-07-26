@@ -21,10 +21,15 @@
 			+--------+----------------+ 
 
 *  实现简单的推送（android）  
-*  使用redis存储客户端与消息
+*  先用H2内存数据库做为开发环境
 *  心跳处理  
 
   
 > android客户端详见 [android客户端](https://github.com/flatychen/nettyPusherAndroid)
  
 
+###简单说明  
+
+- 开发环境使用嵌入式手动启动jetty,位于src/test/ startServer.java中  
+- cn.flaty包下的PushAdmin包与NettyPush包分别对应着连接管理与消息管理后台，以为后面分离做好准备；
+- 由于管理与连接暂时没分离，故连接的启动使用spring监听器启动

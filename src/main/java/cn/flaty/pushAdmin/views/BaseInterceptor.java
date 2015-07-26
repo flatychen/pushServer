@@ -6,6 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/**
+ * 
+ * 
+ * 基础拦截器
+ * @author flaty
+ *
+ */
 @Controller
 public class BaseInterceptor extends HandlerInterceptorAdapter {
 
